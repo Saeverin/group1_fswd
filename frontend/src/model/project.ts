@@ -3,4 +3,6 @@ export interface Project {
     title?: string;
     archived?: boolean;
     done?: boolean;
+    priority?: number; //@Max: Enum??
+    deadline?: Date;
 }

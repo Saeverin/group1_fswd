@@ -25,6 +25,10 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/views/Todo.vue')
       },
       {
+        path: 'todo/:id',
+        component: () => import('@/views/TodoDetails.vue')
+      },
+      {
         path: 'projects',
         component: () => import('@/views/Projects.vue')
       },

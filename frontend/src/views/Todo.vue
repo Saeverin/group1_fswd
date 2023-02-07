@@ -12,7 +12,7 @@
         </ion-toolbar>
       </ion-header>
       <ion-list>
-        <ion-item :key="todo.id" v-for="todo in todos">
+        <ion-item button :router-link="'/tabs/todo/'+todo.id" :key="todo.id" v-for="todo in todos">
           <ion-grid>
             <ion-row>
               <ion-col>

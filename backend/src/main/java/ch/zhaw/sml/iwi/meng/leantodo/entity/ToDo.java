@@ -1,5 +1,7 @@
 package ch.zhaw.sml.iwi.meng.leantodo.entity;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,6 +23,12 @@ public class ToDo {
 
     private boolean archived = false;
     private boolean done = false;
+
+    private String category;
+    private String text;
+    private Date startDate;
+    private Date endDate;
+
 
     @JsonIgnore
     private String owner;

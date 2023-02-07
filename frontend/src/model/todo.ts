@@ -3,4 +3,8 @@ export interface ToDo {
     title?: string;
     archived?: boolean;
     done?: boolean;
+    category?: string;
+    text?: string;
+    startDate?: Date;
+    endDate?: Date;
 }
