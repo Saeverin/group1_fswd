@@ -1,6 +1,7 @@
 package ch.zhaw.sml.iwi.meng.leantodo.entity;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -20,8 +21,15 @@ public class Project {
     private Long id;
 
     private String title;
-
+    
     private String owner;
+    
+    private boolean archived = false;
+    private boolean done = false;
+
+    private int priority;
+
+    private Date deadline;
 
     @OneToMany
     private List<ToDo> toDos = new ArrayList<>();
