@@ -66,6 +66,8 @@
         <ion-button @click="addTask()">Add New Task</ion-button>
       </div>
 
+      <create-projecttask></create-projecttask>
+
       <div>
         <ion-button @click="setOpen(true)">Create Task (Neu)</ion-button>
         <!-- MODAL -->
@@ -106,7 +108,8 @@ import {
   IonInput,
 } from "@ionic/vue";
 import { useTasks } from "../composables/useTasks";
-import { ref } from "vue";
+import { defineComponent, ref } from "vue";
+import createProjecttask from '@/components/createProjecttask.vue'
 
 const isOpen = ref(false);
 

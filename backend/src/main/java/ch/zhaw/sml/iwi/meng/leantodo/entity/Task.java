@@ -1,6 +1,7 @@
 package ch.zhaw.sml.iwi.meng.leantodo.entity;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
@@ -44,8 +45,8 @@ public abstract class Task {
 
     private String category;
     private String text;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
 
     @JsonIgnore
     private String owner;
