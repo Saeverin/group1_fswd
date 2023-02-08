@@ -32,15 +32,10 @@ public class ProjectEndpoint {
     
     @RequestMapping(path = "/api/project/{id}", method = RequestMethod.POST)
     @PreAuthorize("isAuthenticated() AND hasRole('USER')")
-    public void addToDo(@RequestParam(name="id") Long projectId, @RequestBody ToDo toDo,  Principal principal) {
-        projectController.addToDo(projectId, toDo, principal.getName());
+    public void addProject(@RequestParam(name="id") Long projectId, @RequestBody ToDo proJect,  Principal principal) {
+        projectController.addProject(projectId, proJect, principal.getName());
     }
 
-    /*@RequestMapping(path = "/api/project", method = RequestMethod.PUT)
-    @PreAuthorize("isAuthenticated() AND hasRole('USER')")
-    public void updateProJect(@RequestBody ProJect proJect, Principal principal) {
-        ProjectController.updateProJect(proJect, principal.getName());
-    } */
 
 }
 
