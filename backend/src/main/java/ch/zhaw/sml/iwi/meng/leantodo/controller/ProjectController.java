@@ -42,10 +42,15 @@ public class ProjectController {
         projectRepository.save(project);
     }
 
+    /* public List<ProjectTask> listTasksByProject(Long projectId, String loginName) {
+        return projectRepository.findAllButArchivedByOwner(loginName);
+    } */
+
     public static void updateProject(Project proJect, String name) {
     }
 
     public void addProject(Long projectId, ProjectTask projectTask, String name) {
     }
     
+
 }
