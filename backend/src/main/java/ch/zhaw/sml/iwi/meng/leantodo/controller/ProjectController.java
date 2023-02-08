@@ -41,5 +41,11 @@ public class ProjectController {
         project.getToDos().add(toDo);
         projectRepository.save(project);
     }
+
+    public static void updateProject(Project proJect, String name) {
+    }
+
+    public void addProject(Long projectId, ToDo proJect, String name) {
+    }
     
 }
