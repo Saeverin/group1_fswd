@@ -12,27 +12,27 @@
         </ion-toolbar>
       </ion-header>
       <ion-list>
-        <ion-item button :router-link="'/tabs/todo/'+todo.id" :key="todo.id" v-for="todo in todos">
+        <ion-item button :router-link="'/tabs/task/'+task.id" :key="task.id" v-for="task in tasks">
           <ion-grid>
             <ion-row>
               <ion-col>
-                {{ todo.title }}
+                {{ task.title }}
               </ion-col>
               <ion-col>
-                <ion-button color="danger" v-if="!todo.done && !todo.archived"
-                  @click="finishTodo(todo)">Finish</ion-button>
-                <ion-button color="success" v-if="todo.done && !todo.archived"
-                  @click="archiveTodo(todo)">Archive</ion-button>
+                <ion-button color="danger" v-if="!task.done && !task.archived"
+                  @click="finishTask(task)">Finish</ion-button>
+                <ion-button color="success" v-if="task.done && !task.archived"
+                  @click="archiveTask(task)">Archive</ion-button>
               </ion-col>
             </ion-row>
           </ion-grid>
         </ion-item>
       </ion-list>
       <ion-item>
-        <ion-input type="text" placeholder="New Todo Title" v-model="newTodo.title"></ion-input>
+        <ion-input type="text" placeholder="New Task Title" v-model="newTask.title"></ion-input>
       </ion-item>
       <div padding>
-        <ion-button @click="addTodo()">Add New Task</ion-button>
+        <ion-button @click="addTask()">Add New Task</ion-button>
       </div>
     </ion-content>
   </ion-page>
@@ -53,8 +53,8 @@ import {
   IonButton,
   IonInput,
 } from "@ionic/vue";
-import { useTodos } from "../composables/useTodos";
+import { useTasks } from "../composables/useTasks";
 
-const { newTodo, todos, getTodos, addTodo, finishTodo, archiveTodo } = useTodos();
+const { newTask, tasks, getTasks, addTask, finishTask, archiveTask } = useTasks();
 
 </script>

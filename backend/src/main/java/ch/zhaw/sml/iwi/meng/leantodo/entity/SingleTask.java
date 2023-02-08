@@ -8,6 +8,6 @@ import lombok.Data;
 @Entity
 @Data
 @DiscriminatorValue("SingleTask")
-public class SingleTask extends ToDo {
+public class SingleTask extends Task {
     
 }

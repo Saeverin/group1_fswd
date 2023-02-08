@@ -1,4 +1,4 @@
-export interface ToDo {
+export interface Task {
     id?: number;
     title?: string;
     archived?: boolean;
