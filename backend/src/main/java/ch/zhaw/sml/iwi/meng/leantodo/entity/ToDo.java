@@ -1,5 +1,6 @@
 package ch.zhaw.sml.iwi.meng.leantodo.entity;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -26,8 +27,8 @@ public class ToDo {
 
     private String category;
     private String text;
-    private Date startDate;
-    private Date endDate;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
 
 
     @JsonIgnore

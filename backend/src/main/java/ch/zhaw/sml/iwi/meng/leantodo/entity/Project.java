@@ -1,5 +1,6 @@
 package ch.zhaw.sml.iwi.meng.leantodo.entity;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -29,7 +30,7 @@ public class Project {
 
     private int priority;
 
-    private Date deadline;
+    private LocalDateTime deadline;
 
     @OneToMany
     private List<ToDo> toDos = new ArrayList<>();
