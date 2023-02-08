@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { API_ROOT } from "@/config/development";
 import { Task } from "@/model/task";
+import { ProjectTask } from '@/model/projectTask';
 
 export async function getAllTasks(): Promise<Task[]>   { 
     const config = {        
@@ -20,6 +21,19 @@ export async function addNewTask(newTask: Task): Promise<any>   {
     }
     try {
         const response = await axios.post(API_ROOT + '/api/task', newTask, config);
+        return response.data;
+    } catch (error) {
+        return error;   
+    }
+}
+
+export async function addNewProjectTask(newTask: ProjectTask): Promise<any>   {
+    newTask.type = 'ProjectTask'
+    const config = {        
+        withCredentials: true
+    }
+    try {
+        const response = await axios.post(API_ROOT + '/api/projecttask', newTask, config);
         return response.data;
     } catch (error) {
         return error;   
