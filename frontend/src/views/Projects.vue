@@ -33,7 +33,8 @@
       </ion-item>
       <div padding>
         <ion-button @click="addProject()">Add New Project</ion-button>
-      </div>
+      </div>     
+      
     </ion-content>
   </ion-page>
 </template>
