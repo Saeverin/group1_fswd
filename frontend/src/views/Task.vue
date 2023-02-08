@@ -62,14 +62,8 @@
           v-model="newTask.title"
         ></ion-input>
       </ion-item>
-<!--       <div padding>
-        <ion-button @click="addTask()">Add New Task</ion-button>
-      </div> -->
-
       <div>
         <ion-button @click="setOpen(true)">Create Task (Neu)</ion-button>
-        <!-- MODAL -->
-
         <ion-modal :is-open="isOpen" @ionModalDidDismiss="() => {isOpen = false;}">
           <ion-header>
             <ion-toolbar>
@@ -84,6 +78,15 @@
           </ion-content>
         </ion-modal>
       </div>
+<!--
+@TODO
+- Modal als component nutzen
+<modal-create-projecttask></modal-create-projecttask>
+
+- "Success" in createProjecttask (ion-toast?) bei Erstellung
+
+- Nach createProjecttask modal schliessen
+-->
     </ion-content>
   </ion-page>
 </template>
@@ -106,8 +109,9 @@ import {
   IonInput,
 } from "@ionic/vue";
 import { useTasks } from "../composables/useTasks";
-import { defineComponent, ref } from "vue";
-import createProjecttask from '@/components/createProjecttask.vue'
+import { ref } from "vue";
+import createProjecttask from '@/components/createProjecttask.vue';
+/* import modalCreateProjecttask from '../components/modalCreateProjecttask.vue'; */
 
 const isOpen = ref(false);
 
