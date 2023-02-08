@@ -12,6 +12,9 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
 
 import lombok.Data;
 
@@ -19,6 +22,15 @@ import lombok.Data;
 @Data
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "Status", discriminatorType=DiscriminatorType.STRING)
+
+@JsonTypeInfo(
+      use = JsonTypeInfo.Id.NAME, 
+      include = As.PROPERTY, 
+      property = "type")
+@JsonSubTypes({    
+    @JsonSubTypes.Type(value = ProjectTask.class, name="ProjectTask"),
+    @JsonSubTypes.Type(value = SingleTask.class, name="SingleTask")
+})
 public abstract class ToDo {
     
     @Id
