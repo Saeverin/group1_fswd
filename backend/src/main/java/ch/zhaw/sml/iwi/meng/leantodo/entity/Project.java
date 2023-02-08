@@ -2,7 +2,6 @@ package ch.zhaw.sml.iwi.meng.leantodo.entity;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -25,14 +24,12 @@ public class Project {
     
     private String owner;
     
-    private boolean archived = false;
-    private boolean done = false;
-
-    private int priority;
+    private Boolean archived = false;
+    private Boolean done = false;
 
     private LocalDateTime deadline;
 
     @OneToMany
-    private List<ToDo> toDos = new ArrayList<>();
+    private List<ProjectTask> projectTasks = new ArrayList<>();
     
 }

@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -14,7 +16,8 @@ import lombok.Data;
 
 @Entity
 @Data
-public class ToDo {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public abstract class ToDo {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,15 +25,11 @@ public class ToDo {
 
     private String title;
 
-    private boolean archived = false;
-    private boolean done = false;
+    private Boolean archived = false;
+    private Boolean done = false;
 
     private String category;
     private String text;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
-
-
-    @JsonIgnore
-    private String owner;
 }
