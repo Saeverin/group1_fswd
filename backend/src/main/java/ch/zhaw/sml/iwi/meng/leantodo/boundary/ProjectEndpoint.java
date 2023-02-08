@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ch.zhaw.sml.iwi.meng.leantodo.controller.ProjectController;
 import ch.zhaw.sml.iwi.meng.leantodo.entity.Project;
-import ch.zhaw.sml.iwi.meng.leantodo.entity.ToDo;
+import ch.zhaw.sml.iwi.meng.leantodo.entity.ProjectTask;
 
 @RestController
 @CrossOrigin
@@ -32,7 +32,7 @@ public class ProjectEndpoint {
     
     @RequestMapping(path = "/api/project/{id}", method = RequestMethod.POST)
     @PreAuthorize("isAuthenticated() AND hasRole('USER')")
-    public void addProject(@RequestParam(name="id") Long projectId, @RequestBody ToDo proJect,  Principal principal) {
+    public void addProject(@RequestParam(name="id") Long projectId, @RequestBody ProjectTask proJect,  Principal principal) {
         projectController.addProject(projectId, proJect, principal.getName());
     }
 
