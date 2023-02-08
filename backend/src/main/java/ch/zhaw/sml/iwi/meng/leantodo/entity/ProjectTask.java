@@ -9,7 +9,7 @@ import lombok.Data;
 @Entity
 @Data
 @DiscriminatorValue("ProjectTask")
-public class ProjectTask extends ToDo {
+public class ProjectTask extends Task {
     
     @ManyToOne
     private Project project;

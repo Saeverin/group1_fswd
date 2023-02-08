@@ -21,12 +21,12 @@ const routes: Array<RouteRecordRaw> = [
         redirect: '/tabs/tab1'
       },
       {
-        path: 'todo',
-        component: () => import('@/views/Todo.vue')
+        path: 'task',
+        component: () => import('@/views/Task.vue')
       },
       {
-        path: 'todo/:id',
-        component: () => import('@/views/TodoDetails.vue')
+        path: 'task/:id',
+        component: () => import('@/views/TaskDetails.vue')
       },
       {
         path: 'projects',

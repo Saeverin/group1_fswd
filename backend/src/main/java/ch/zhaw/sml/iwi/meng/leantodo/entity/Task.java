@@ -31,7 +31,7 @@ import lombok.Data;
     @JsonSubTypes.Type(value = ProjectTask.class, name="ProjectTask"),
     @JsonSubTypes.Type(value = SingleTask.class, name="SingleTask")
 })
-public abstract class ToDo {
+public abstract class Task {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

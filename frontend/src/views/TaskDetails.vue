@@ -5,7 +5,7 @@
         <ion-buttons slot="start">
           <ion-back-button></ion-back-button>
         </ion-buttons>
-        <ion-title>ToDo Details</ion-title>
+        <ion-title>Task Details</ion-title>
       </ion-toolbar>
     </ion-header>
 
@@ -16,7 +16,7 @@
         </ion-toolbar>
       </ion-header>
 
-      ToDo Details
+      Task Details
       <br />
       <ion-list>
         <ion-grid>
