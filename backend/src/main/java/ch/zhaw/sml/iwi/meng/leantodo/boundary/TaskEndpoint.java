@@ -40,7 +40,7 @@ public class TaskEndpoint {
     @RequestMapping(path = "/api/projecttask", method = RequestMethod.POST)
     @PreAuthorize("isAuthenticated() AND hasRole('USER')")
     public void addProjectTask(@RequestBody ProjectTask projectTask, Principal principal) {
-        taskController.persistTask(projectTask, principal.getName());
+        taskController.persistProjectTask(projectTask, "user");
     }
     
     @RequestMapping(path = "/api/singletask", method = RequestMethod.POST)

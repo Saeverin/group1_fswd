@@ -2,6 +2,7 @@ package ch.zhaw.sml.iwi.meng.leantodo.controller;
 
 import java.util.List;
 
+import ch.zhaw.sml.iwi.meng.leantodo.entity.ProjectTask;
 import ch.zhaw.sml.iwi.meng.leantodo.entity.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,6 +25,11 @@ public class TaskController {
         newTask.setOwner(owner);
         newTask.setId(null);
         taskRepository.save(newTask);
+    }
+
+    public void persistProjectTask(ProjectTask newProjectTask, String owner) {
+        newProjectTask.setOwner(owner);
+        taskRepository.save(newProjectTask);
     }
 
     public void updateTask(Task task, String owner) {
