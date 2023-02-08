@@ -62,11 +62,9 @@
           v-model="newTask.title"
         ></ion-input>
       </ion-item>
-      <div padding>
+<!--       <div padding>
         <ion-button @click="addTask()">Add New Task</ion-button>
-      </div>
-
-      <create-projecttask></create-projecttask>
+      </div> -->
 
       <div>
         <ion-button @click="setOpen(true)">Create Task (Neu)</ion-button>
@@ -82,7 +80,7 @@
             </ion-toolbar>
           </ion-header>
           <ion-content>
-            <p>ASDF TEST TEST INHALT MODAL</p>
+          <create-projecttask></create-projecttask>
           </ion-content>
         </ion-modal>
       </div>
