@@ -70,10 +70,10 @@
         <ion-button @click="setOpen(true)">Create Task (Neu)</ion-button>
         <!-- MODAL -->
 
-        <ion-modal :is-open="isOpen">
+        <ion-modal :is-open="isOpen" @ionModalDidDismiss="() => {isOpen = false;}">
           <ion-header>
             <ion-toolbar>
-              <ion-title>Modal</ion-title>
+              <ion-title>Create new Task</ion-title>
               <ion-buttons slot="end">
                 <ion-button @click="setOpen(false)">Close</ion-button>
               </ion-buttons>
@@ -106,29 +106,13 @@ import {
   IonInput,
 } from "@ionic/vue";
 import { useTasks } from "../composables/useTasks";
-import { defineComponent, ref } from "vue";
+import { ref } from "vue";
 
-defineComponent({
-  components: {
-    IonButtons,
-    IonButton,
-    IonModal,
-    IonHeader,
-    IonContent,
-    IonToolbar,
-    IonTitle,
-  },
-  data() {
-    return {
-      isOpen: false,
-    };
-  },
-  methods: {
-    setOpen(isOpen: boolean) {
-      this.isOpen = isOpen;
-    },
-  },
-});
+const isOpen = ref(false);
+
+function setOpen(open: boolean) {
+  isOpen.value = open;
+}
 
 const { newTask, tasks, getTasks, addTask, finishTask, archiveTask } =
   useTasks();
