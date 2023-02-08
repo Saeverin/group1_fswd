@@ -2,13 +2,13 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-title>Todos</ion-title>
+        <ion-title>Tasks</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
       <ion-header collapse="condense">
         <ion-toolbar>
-          <ion-title size="large">Todos</ion-title>
+          <ion-title size="large">Tasks</ion-title>
         </ion-toolbar>
       </ion-header>
       <ion-list>
@@ -32,7 +32,7 @@
         <ion-input type="text" placeholder="New Todo Title" v-model="newTodo.title"></ion-input>
       </ion-item>
       <div padding>
-        <ion-button @click="addTodo()">Add New ToDo</ion-button>
+        <ion-button @click="addTodo()">Add New Task</ion-button>
       </div>
     </ion-content>
   </ion-page>
