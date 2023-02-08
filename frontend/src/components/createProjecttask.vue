@@ -37,10 +37,10 @@
   <ion-button @click="addProjectTask()">Add New Task</ion-button>
 
   <ion-modal :keep-contents-mounted="true">
-    <ion-datetime id="datetimestart"></ion-datetime>
+    <ion-datetime v-model="newProjectTask.startDate" id="datetimestart"></ion-datetime>
   </ion-modal>
   <ion-modal :keep-contents-mounted="true">
-    <ion-datetime id="datetimeend"></ion-datetime>
+    <ion-datetime v-model="newProjectTask.endDate" id="datetimeend"></ion-datetime>
   </ion-modal>
 </template>
   

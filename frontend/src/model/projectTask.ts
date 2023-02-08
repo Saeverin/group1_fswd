@@ -5,6 +5,6 @@ export interface ProjectTask {
     done?: boolean;
     category?: string;
     text?: string;
-    startDate?: Date;
-    endDate?: Date;
+    startDate?: string;
+    endDate?: string;
 }

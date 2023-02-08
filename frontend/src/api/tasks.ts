@@ -29,6 +29,8 @@ export async function addNewTask(newTask: Task): Promise<any>   {
 
 export async function addNewProjectTask(newTask: ProjectTask): Promise<any>   {
     newTask.type = 'ProjectTask'
+    newTask.endDate = newTask.endDate?.substring(0,19)
+    newTask.startDate = newTask.startDate?.substring(0,19)
     const config = {        
         withCredentials: true
     }
