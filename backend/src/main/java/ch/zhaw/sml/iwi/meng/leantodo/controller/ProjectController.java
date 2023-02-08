@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import ch.zhaw.sml.iwi.meng.leantodo.entity.Project;
 import ch.zhaw.sml.iwi.meng.leantodo.entity.ProjectRepository;
-import ch.zhaw.sml.iwi.meng.leantodo.entity.ToDo;
+import ch.zhaw.sml.iwi.meng.leantodo.entity.ProjectTask;
 
 @Component
 public class ProjectController {
@@ -25,27 +25,27 @@ public class ProjectController {
     public void persistProject(Project newProject, String owner) {
         newProject.setId(null);
         // We only create empty projects
-        newProject.getToDos().clear();
+        newProject.getProjectTasks().clear();
         newProject.setOwner(owner);
         projectRepository.save(newProject);
     }
 
-    public void addToDo(Long projectId, ToDo toDo, String owner) {
+    public void addProjectTask(Long projectId, ProjectTask projectTask, String owner) {
         Project project = projectRepository.getOne(projectId);
         if(project == null || !project.getOwner().equals(owner)) {
             return;
         }  
         // Ensure that JPA creates a new entity
-        toDo.setId(null);
-        toDo.setOwner(owner);
-        project.getToDos().add(toDo);
+        projectTask.setId(null);
+        projectTask.setOwner(owner);
+        project.getProjectTasks().add(projectTask);
         projectRepository.save(project);
     }
 
     public static void updateProject(Project proJect, String name) {
     }
 
-    public void addProject(Long projectId, ToDo proJect, String name) {
+    public void addProject(Long projectId, ProjectTask projectTask, String name) {
     }
     
 }
