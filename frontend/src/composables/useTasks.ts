@@ -6,7 +6,7 @@ import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 
 export function useTasks() {
-
+    
     const specificTask = ref<Task>();
 
     const tasks = ref<Task[]>([]);
@@ -35,20 +35,20 @@ export function useTasks() {
     }
 
 
-    const finishTask = async (task: Task) => {
+    const finishTask = async (specificTask: Task) => {
         try {
-            task.done = true;
-            updateTask(task);
+            specificTask.done = true;
+            updateTask(specificTask);
         } catch (error) {
             return(error);
             console.log(error); // FIXME: Errorhandling
         }
     }
 
-    const archiveTask = async (task: Task) => {
+    const archiveTask = async (specificTask: Task) => {
         try {
-            task.archived = true;
-            await updateTask(task);
+            specificTask.archived = true;
+            await updateTask(specificTask);
             getTasks();
         } catch (error) {
             return(error);

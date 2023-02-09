@@ -18,12 +18,7 @@
           <ion-col>Enddate</ion-col>
           <ion-col>Project</ion-col>
         </ion-row>
-        <ion-item
-          button
-          :router-link="'/tabs/task/' + task.id"
-          :key="task.id"
-          v-for="task in tasks"
-        >
+        <ion-item button :router-link="'/tabs/task/' + task.id" :key="task.id" v-for="task in tasks">
           <ion-grid>
             <ion-row>
               <ion-col>
@@ -36,18 +31,7 @@
                 {{ task.endDate }}
               </ion-col>
               <ion-col>
-                <ion-button
-                  color="danger"
-                  v-if="!task.done && !task.archived"
-                  @click="finishTask(task)"
-                  >Finish</ion-button
-                >
-                <ion-button
-                  color="success"
-                  v-if="task.done && !task.archived"
-                  @click="archiveTask(task)"
-                  >Archive</ion-button
-                >
+                {{ task.project?.title }}
               </ion-col>
             </ion-row>
           </ion-grid>
@@ -56,14 +40,11 @@
 
       <div>
         <ion-button @click="setOpen(true)">Create Task</ion-button>
-        <ion-modal
-          :is-open="isOpen"
-          @ionModalDidDismiss="
-            () => {
-              isOpen = false;
-            }
-          "
-        >
+        <ion-modal :is-open="isOpen" @ionModalDidDismiss="
+          () => {
+            isOpen = false;
+          }
+        ">
           <ion-header>
             <ion-toolbar>
               <ion-title>Create new Task</ion-title>
@@ -134,11 +115,11 @@ const isOpen = ref(false);
 const projectTask = ref<any>(null);
 
 function setProjectFalse() {
-  projectTask.value = false; 
+  projectTask.value = false;
 }
 
 function setProjectTrue() {
-  projectTask.value = true; 
+  projectTask.value = true;
 }
 
 function setOpen(open: boolean) {
@@ -147,6 +128,6 @@ function setOpen(open: boolean) {
   getTasks();
 }
 
-const { newTask, tasks, getTasks, finishTask, archiveTask } =
+const { newTask, tasks, getTasks, finishTask, archiveTask, } =
   useTasks();
 </script>

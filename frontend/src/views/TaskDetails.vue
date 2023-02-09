@@ -16,33 +16,50 @@
         </ion-toolbar>
       </ion-header>
 
-      Task Details 
+      <h1 class="h1">Task Details </h1>
         <ion-item
          >
         <ion-grid>
           <ion-row>
-            <ion-col size="1"> Title:</ion-col>
-            <ion-col size="4"> {{ specificTask?.title }} </ion-col>
+            <ion-col> Title:</ion-col>
+            <ion-col> {{ specificTask?.title }} </ion-col>
           </ion-row>
           <ion-row>
-            <ion-col size="1"> Category:</ion-col>
-            <ion-col size="4"> {{ specificTask?.category }} </ion-col>
+            <ion-col> Category:</ion-col>
+            <ion-col> {{ specificTask?.category }} </ion-col>
           </ion-row>
           <ion-row>
-            <ion-col size="1"> Start-Date:</ion-col>
-            <ion-col size="4"> {{ specificTask?.startDate }} </ion-col>
+            <ion-col> Start-Date:</ion-col>
+            <ion-col> {{ specificTask?.startDate }} </ion-col>
           </ion-row>
           <ion-row>
-            <ion-col size="1">End-Date:</ion-col>
-            <ion-col size="4"> {{ specificTask?.endDate }} </ion-col>
+            <ion-col>End-Date:</ion-col>
+            <ion-col> {{ specificTask?.endDate }} </ion-col>
           </ion-row>
           <ion-row>
-            <ion-col size="1">Text:</ion-col>
-            <ion-col size="4"> {{ specificTask?.text }} </ion-col>
+            <ion-col>Text:</ion-col>
+            <ion-col> {{ specificTask?.text }} </ion-col>
           </ion-row>
           <ion-row>
-            <ion-col size="1">Status:</ion-col>
-            <ion-col size="4"> {{ done }} </ion-col>            
+            <ion-col>Project:</ion-col>
+            <ion-col> {{ specificTask?.project }} </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>Status:</ion-col>
+            <ion-col>
+                <ion-button
+                  color="danger"
+                  v-if="!specificTask?.done && !specificTask?.archived"
+                  @click="finishTask(specificTask)"
+                  >Finish</ion-button
+                >
+                <ion-button
+                  color="success"
+                  v-if="specificTask?.done && !specificTask?.archived"
+                  @click="archiveTask(specificTask)"
+                  >Archive</ion-button
+                >
+              </ion-col>  
           </ion-row>
         </ion-grid>
         </ion-item>
@@ -66,11 +83,31 @@ import {
 import { onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { useTasks } from "../composables/useTasks";
+import { ref } from "vue";
 
 const { newTask, tasks, specificTask, getTasks, finishTask, archiveTask, getSpecificTaskById } =
   useTasks();
 
   const route = useRoute();
+
+  const isOpen = ref(false);
+const projectTask = ref<any>(null);
+
+function setProjectFalse() {
+  projectTask.value = false; 
+}
+
+function setProjectTrue() {
+  projectTask.value = true; 
+}
+
+function setOpen(open: boolean) {
+  //Öffnen/Schliessen + update Tasklist
+  isOpen.value = open;
+  getTasks();
+}
+
+
 
 
   onMounted( () => {getSpecificTaskById(+id)})
@@ -86,9 +123,12 @@ const endDate = route.params.endDate;
   
 <style scoped>
 ion-col {
-  background-color: #135d54;
+  background-color: #71a4f1;
   border: solid 1px #fff;
   color: #fff;
+  text-align: left;
+}
+.h1 {
   text-align: center;
 }
 </style>
