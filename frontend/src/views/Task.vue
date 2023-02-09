@@ -22,8 +22,7 @@
           button
           :router-link="'/tabs/task/' + task.id"
           :key="task.id"
-          v-for="task in tasks"
-        >
+          v-for="task in tasks">
           <ion-grid>
             <ion-row>
               <ion-col>
@@ -34,34 +33,32 @@
                   color="danger"
                   v-if="!task.done && !task.archived"
                   @click="finishTask(task)"
-                  >Finish</ion-button
-                >
+                  >Finish</ion-button>
                 <ion-button
                   color="success"
                   v-if="task.done && !task.archived"
                   @click="archiveTask(task)"
-                  >Archive</ion-button
-                >
+                  >Archive</ion-button>
               </ion-col>
               <ion-col>
-                <!--{{ task.category }}-->
-                Kategorie d. Tasks
+                {{ task.category }}
               </ion-col>
               <ion->
-                <!--{{ task.project }}-->
-                Zugehöriges Projekt
+                {{ task.project }}
               </ion->
             </ion-row>
           </ion-grid>
         </ion-item>
       </ion-list>
-
-      
-
+      <ion-item>
+        <ion-input
+          type="text"
+          placeholder="New Task Title"
+          v-model="newTask.title"
+        ></ion-input>
+      </ion-item>
       <div>
-        <ion-button @click="setOpen(true)">Create Task</ion-button>
-        <!-- MODAL -->
-
+        <ion-button @click="setOpen(true)">Create Task (Neu)</ion-button>
         <ion-modal :is-open="isOpen" @ionModalDidDismiss="() => {isOpen = false;}">
           <ion-header>
             <ion-toolbar>
@@ -72,10 +69,19 @@
             </ion-toolbar>
           </ion-header>
           <ion-content>
-            <create-projecttask></create-projecttask>
+          <create-projecttask></create-projecttask>
           </ion-content>
         </ion-modal>
       </div>
+<!--
+@TODO
+- Modal als component nutzen
+<modal-create-projecttask></modal-create-projecttask>
+
+- "Success" in createProjecttask (ion-toast?) bei Erstellung
+
+- Nach createProjecttask modal schliessen
+-->
     </ion-content>
   </ion-page>
 </template>
@@ -98,8 +104,9 @@ import {
   IonInput,
 } from "@ionic/vue";
 import { useTasks } from "../composables/useTasks";
-import { defineComponent, ref } from "vue";
-import createProjecttask from '@/components/createProjecttask.vue'
+import { ref } from "vue";
+import createProjecttask from '@/components/createProjecttask.vue';
+/* import modalCreateProjecttask from '../components/modalCreateProjecttask.vue'; */
 
 const isOpen = ref(false);
 
