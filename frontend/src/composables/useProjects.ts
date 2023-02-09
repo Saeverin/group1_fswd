@@ -2,7 +2,7 @@ import { getAllProJects, updateProJect, addNewProJect } from '@/api/projects';
 import  { Project } from '../model/project';
 import { onMounted, ref } from 'vue';
 
-export function useProJects() {
+export function useProjects() {
 
     const projects = ref<Project[]>([]);
 

@@ -50,9 +50,9 @@
           </ion-grid>
         </ion-item>
       </ion-list>
-      
+     
       <div>
-        <ion-button @click="setOpen(true)">Create Task (Neu)</ion-button>
+        <ion-button @click="setOpen(true)">Create Task</ion-button>
         <ion-modal :is-open="isOpen" @ionModalDidDismiss="() => {isOpen = false;}">
           <ion-header>
             <ion-toolbar>

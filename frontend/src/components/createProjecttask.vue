@@ -27,10 +27,11 @@
       <ion-datetime-button datetime="datetimeend"></ion-datetime-button>
     </ion-item>
     <ion-item>
-      <ion-select placeholder="Projekt auswählen">
-        <ion-select-option value="apples">Apples</ion-select-option>
-        <ion-select-option value="oranges">Oranges</ion-select-option>
-        <ion-select-option value="bananas">Bananas</ion-select-option>
+      <ion-label>Projekt</ion-label>
+      <ion-select placeholder="Projekt auswählen" :value="newProjectTask.project"
+        @ionChange="newProjectTask.project = $event.target.value">
+        <ion-select-option :key="project.id" v-model="newProjectTask.project"
+          v-for="project in projects" :value="project.id">{{project.title}}</ion-select-option>
       </ion-select>
     </ion-item>
   </ion-list>
@@ -59,8 +60,10 @@ import {
   IonInput,
 } from "@ionic/vue";
 import { useTasks } from "../composables/useTasks";
+import { useProjects } from "../composables/useProjects";
 
 const { newProjectTask, addProjectTask } = useTasks();
+const { getProjects, projects } = useProjects();
 </script>
   
 <style scoped>

@@ -7,4 +7,5 @@ export interface ProjectTask {
     text?: string;
     startDate?: string;
     endDate?: string;
+    project?: number;
 }

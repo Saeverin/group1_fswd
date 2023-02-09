@@ -30,11 +30,11 @@ public class ProjectEndpoint {
         return projectController.listAllProjects(principal.getName());
     }
     
-    @RequestMapping(path = "/api/project/{id}", method = RequestMethod.POST)
+    /* @RequestMapping(path = "/api/project/{id}", method = RequestMethod.POST)
     @PreAuthorize("isAuthenticated() AND hasRole('USER')")
     public void addProject(@RequestParam(name="id") Long projectId, @RequestBody ProjectTask proJect,  Principal principal) {
         projectController.addProject(projectId, proJect, principal.getName());
-    }
+    } */
 
 
 }

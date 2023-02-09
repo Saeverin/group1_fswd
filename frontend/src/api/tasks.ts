@@ -31,11 +31,18 @@ export async function addNewProjectTask(newTask: ProjectTask): Promise<any>   {
     newTask.type = 'ProjectTask'
     newTask.endDate = newTask.endDate?.substring(0,19)
     newTask.startDate = newTask.startDate?.substring(0,19)
+    const projectId = newTask.project;
+    console.log(projectId)
+    console.log(newTask)
+
+    const {project, ...newObj} = newTask;
+    console.log(newObj)
+
     const config = {        
         withCredentials: true
     }
     try {
-        const response = await axios.post(API_ROOT + '/api/projecttask', newTask, config);
+        const response = await axios.post(API_ROOT + '/api/project/'+ projectId, newObj, config);
         return response.data;
     } catch (error) {
         return error;   
