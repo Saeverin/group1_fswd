@@ -27,6 +27,7 @@ export function useTasks() {
             task.done = true;
             updateTask(task);
         } catch (error) {
+            return(error);
             console.log(error); // FIXME: Errorhandling
         }
     }
@@ -37,6 +38,7 @@ export function useTasks() {
             await updateTask(task);
             getTasks();
         } catch (error) {
+            return(error);
             console.log(error); // FIXME: Errorhandling
         }
     }
@@ -47,6 +49,7 @@ export function useTasks() {
             await addNewSingleTask(newSingleTask.value);
             getTasks();
         } catch (error) {
+            return(error);
             console.log(error); // FIXME: Errorhandling
         }
     }
@@ -57,6 +60,7 @@ export function useTasks() {
             await addNewProjectTask(newProjectTask.value);
             getTasks();
         } catch (error) {
+            return(error);
             console.log(error); // FIXME: Errorhandling
         }
     }

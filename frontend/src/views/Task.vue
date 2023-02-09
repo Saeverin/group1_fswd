@@ -142,7 +142,9 @@ function setProjectTrue() {
 }
 
 function setOpen(open: boolean) {
+  //Öffnen/Schliessen + update Tasklist
   isOpen.value = open;
+  getTasks();
 }
 
 const { newTask, tasks, getTasks, finishTask, archiveTask } =
