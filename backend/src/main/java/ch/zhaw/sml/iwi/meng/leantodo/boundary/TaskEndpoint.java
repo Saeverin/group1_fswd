@@ -37,10 +37,10 @@ public class TaskEndpoint {
         return  toDoController.listAllToDos(principal.getName());        
     } */
 
-    @RequestMapping(path = "/api/projecttask", method = RequestMethod.POST)
+    @RequestMapping(path = "/api/project/{id}", method = RequestMethod.POST)
     @PreAuthorize("isAuthenticated() AND hasRole('USER')")
-    public void addProjectTask(@RequestBody ProjectTask projectTask, Principal principal) {
-        taskController.persistProjectTask(projectTask, "user");
+    public void addProjectTask(@PathVariable("id") Long id, @RequestBody ProjectTask projectTask, Principal principal) {
+        taskController.persistProjectTask(projectTask, "user", id);
     }
     
     @RequestMapping(path = "/api/singletask", method = RequestMethod.POST)
