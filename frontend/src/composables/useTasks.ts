@@ -9,7 +9,7 @@ export function useTasks() {
 
     const routeId = ref<any>();
 
-    const task = ref<Task>();
+    const specificTask = ref<Task>();
 
     const tasks = ref<Task[]>([]);
 
@@ -30,7 +30,7 @@ export function useTasks() {
 
     const getSpecificTaskById = async () => {
         try {
-            task.value = await getTaskById(+routeId.value);
+            specificTask.value = await getTaskById(+routeId.value);
         } catch (error) {
             console.log(error); // FIXME: Errorhandling
         }
@@ -87,13 +87,14 @@ export function useTasks() {
         newProjectTask,
         newSingleTask,
         tasks,
-        task,
+        specificTask,
         routeId,
         getTasks,
         finishTask,
         archiveTask,
         addProjectTask,
-        addSingleTask
+        addSingleTask,
+        getSpecificTaskById
     }
 }
 

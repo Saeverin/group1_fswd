@@ -16,7 +16,7 @@
         </ion-toolbar>
       </ion-header>
 
-      Task Details {{ task?.title }}
+      Task Details {{ specificTask?.archived }}
         <ion-item
           button
           :router-link="'/tabs/task/' + task.id"
@@ -71,7 +71,7 @@ import { useRoute } from "vue-router";
 import { useTasks } from "../composables/useTasks";
 import { getTaskById } from "../api/tasks"
 
-const { newTask, tasks, task, routeId, getTasks, finishTask, archiveTask, getSpecificTaskById } =
+const { newTask, tasks, specificTask, routeId, getTasks, finishTask, archiveTask, getSpecificTaskById } =
   useTasks();
 
   const route = useRoute();
