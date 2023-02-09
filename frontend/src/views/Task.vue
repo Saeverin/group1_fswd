@@ -22,8 +22,7 @@
           button
           :router-link="'/tabs/task/' + task.id"
           :key="task.id"
-          v-for="task in tasks"
-        >
+          v-for="task in tasks">
           <ion-grid>
             <ion-row>
               <ion-col>
@@ -34,22 +33,18 @@
                   color="danger"
                   v-if="!task.done && !task.archived"
                   @click="finishTask(task)"
-                  >Finish</ion-button
-                >
+                  >Finish</ion-button>
                 <ion-button
                   color="success"
                   v-if="task.done && !task.archived"
                   @click="archiveTask(task)"
-                  >Archive</ion-button
-                >
+                  >Archive</ion-button>
               </ion-col>
               <ion-col>
-                <!--{{ task.category }}-->
-                Kategorie d. Tasks
+                {{ task.category }}
               </ion-col>
               <ion->
-                <!--{{ task.project }}-->
-                Zugehöriges Projekt
+                {{ task.project }}
               </ion->
             </ion-row>
           </ion-grid>
