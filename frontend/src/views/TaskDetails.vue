@@ -21,10 +21,12 @@
       <ion-list>
         <ion-grid>
           <ion-row>
-            <ion-col> ID: {{ id }} </ion-col>
-            <ion-col> Titel: {{ title }} </ion-col>
-            <ion-col> Done? {{ done }} </ion-col>
-            <ion-col> Kategorie: {{ category }} </ion-col>
+            <ion-col> Title: {{ title }} </ion-col>
+            <ion-col> Category: {{ done }} </ion-col>
+            <ion-col> Text: {{ category }} </ion-col>
+            <ion-col> Startdate: {{ category }} </ion-col>
+            <ion-col> Enddate: {{ category }} </ion-col>
+            <ion-col> Project {{ category }} </ion-col>
           </ion-row>
         </ion-grid>
       </ion-list>

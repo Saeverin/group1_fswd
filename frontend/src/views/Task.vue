@@ -14,9 +14,9 @@
       <ion-list>
         <ion-row>
           <ion-col>Title</ion-col>
-          <ion-col>Kategorie</ion-col>
-          <ion-col>End-Datum</ion-col>
-          <ion-col>Projekt</ion-col>
+          <ion-col>Category</ion-col>
+          <ion-col>Enddate</ion-col>
+          <ion-col>Project</ion-col>
         </ion-row>
         <ion-item
           button
