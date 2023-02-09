@@ -1,5 +1,6 @@
-import { getAllTasks, updateTask, addNewTask, addNewProjectTask, getTaskById } from '@/api/tasks';
+import { getAllTasks, updateTask, addNewSingleTask, addNewProjectTask, getTaskById } from '@/api/tasks';
 import { Task } from '@/model/task';
+import { SingleTask } from '@/model/singleTask';
 import { ProjectTask } from '@/model/projectTask';
 import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
@@ -15,6 +16,8 @@ export function useTasks() {
     const newTask = ref<Task>({});
 
     const newProjectTask = ref<ProjectTask>({});
+
+    const newSingleTask = ref<SingleTask>({});
 
     const getTasks = async () => {
         try {
@@ -39,6 +42,7 @@ export function useTasks() {
             task.done = true;
             updateTask(task);
         } catch (error) {
+            return(error);
             console.log(error); // FIXME: Errorhandling
         }
     }
@@ -49,16 +53,18 @@ export function useTasks() {
             await updateTask(task);
             getTasks();
         } catch (error) {
+            return(error);
             console.log(error); // FIXME: Errorhandling
         }
     }
 
-    const addTask = async () => {
+    const addSingleTask = async () => {
         try {
             // add the new todo and update the list of all todos afterwards
-            await addNewTask(newTask.value);
+            await addNewSingleTask(newSingleTask.value);
             getTasks();
         } catch (error) {
+            return(error);
             console.log(error); // FIXME: Errorhandling
         }
     }
@@ -69,6 +75,7 @@ export function useTasks() {
             await addNewProjectTask(newProjectTask.value);
             getTasks();
         } catch (error) {
+            return(error);
             console.log(error); // FIXME: Errorhandling
         }
     }
@@ -78,16 +85,15 @@ export function useTasks() {
     return {
         newTask,
         newProjectTask,
+        newSingleTask,
         tasks,
         task,
         routeId,
         getTasks,
-        getSpecificTaskById,
         addTask,
         finishTask,
         archiveTask,
         addProjectTask
-        
     }
 }
 

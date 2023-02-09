@@ -1,7 +1,10 @@
 package ch.zhaw.sml.iwi.meng.leantodo.controller;
 
 import java.util.List;
+import java.util.Optional;
 
+import ch.zhaw.sml.iwi.meng.leantodo.entity.Project;
+import ch.zhaw.sml.iwi.meng.leantodo.entity.ProjectRepository;
 import ch.zhaw.sml.iwi.meng.leantodo.entity.ProjectTask;
 import ch.zhaw.sml.iwi.meng.leantodo.entity.Task;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +20,9 @@ public class TaskController {
     @Autowired
     private TaskRepository taskRepository;
 
+    @Autowired
+    private ProjectRepository projectRepository;
+
     public List<Task> listAllTasks(String loginName) {
         return taskRepository.findAllButArchivedByOwner(loginName);
     }
@@ -31,7 +37,13 @@ public class TaskController {
         taskRepository.save(newTask);
     }
 
-    public void persistProjectTask(ProjectTask newProjectTask, String owner) {
+    public void persistProjectTask(ProjectTask newProjectTask, String owner, Long id) {
+        Optional<Project> project = projectRepository.findById(id);
+
+        if(project.isPresent()) {
+            newProjectTask.setProject(project.get());
+        }
+
         newProjectTask.setOwner(owner);
         taskRepository.save(newProjectTask);
     }

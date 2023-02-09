@@ -1,4 +1,4 @@
-export interface ProjectTask {
+export interface SingleTask {
     type?: string;
     title?: string;
     archived?: boolean;
@@ -7,5 +7,4 @@ export interface ProjectTask {
     text?: string;
     startDate?: string;
     endDate?: string;
-    project?: number;
 }
