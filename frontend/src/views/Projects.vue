@@ -12,7 +12,7 @@
         </ion-toolbar>
       </ion-header>
       <ion-list>
-        <ion-item :key="project.id" v-for="project in projects">
+        <ion-item button :router-link="'/tabs/project/' + project.id" :key="project.id" v-for="project in projects">
           <ion-grid>
             <ion-row>
               <ion-col>

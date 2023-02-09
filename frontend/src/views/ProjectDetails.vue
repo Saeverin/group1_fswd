@@ -50,12 +50,6 @@
   const route = useRoute();
   
   const id = route.params.id;
-  const title = route.params.title;
-  const done = route.params.done;
-  const category = route.params.category;
-  const text = route.params.text;
-  const startDate = route.params.startDate;
-  const endDate = route.params.endDate;
   </script>
     
     <style scoped>
