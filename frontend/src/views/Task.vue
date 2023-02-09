@@ -14,9 +14,9 @@
       <ion-list>
         <ion-row>
           <ion-col>Title</ion-col>
-          <ion-col>Done?</ion-col>
-          <ion-col>Category</ion-col>
-          <ion-col>Project</ion-col>
+          <ion-col>Kategorie</ion-col>
+          <ion-col>End-Datum</ion-col>
+          <ion-col>Projekt</ion-col>
         </ion-row>
         <ion-item
           button
@@ -27,6 +27,12 @@
             <ion-row>
               <ion-col>
                 {{ task.title }}
+              </ion-col>
+              <ion-col>
+                {{ task.category }}
+              </ion-col>
+              <ion-col>
+                {{ task.endDate }}
               </ion-col>
               <ion-col>
                 <ion-button
@@ -40,23 +46,11 @@
                   @click="archiveTask(task)"
                   >Archive</ion-button>
               </ion-col>
-              <ion-col>
-                {{ task.category }}
-              </ion-col>
-              <ion->
-                {{ task.project }}
-              </ion->
             </ion-row>
           </ion-grid>
         </ion-item>
       </ion-list>
-      <ion-item>
-        <ion-input
-          type="text"
-          placeholder="New Task Title"
-          v-model="newTask.title"
-        ></ion-input>
-      </ion-item>
+      
       <div>
         <ion-button @click="setOpen(true)">Create Task (Neu)</ion-button>
         <ion-modal :is-open="isOpen" @ionModalDidDismiss="() => {isOpen = false;}">
