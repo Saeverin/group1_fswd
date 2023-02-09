@@ -54,8 +54,8 @@ import {
   IonButton,
   IonInput,
 } from "@ionic/vue";
-import { useProJects } from "../composables/useProjects";
+import { useProjects } from "../composables/useProjects";
 
-const { newProject, projects, getProjects, addProject, finishProject, archiveProject } = useProJects();
+const { newProject, projects, getProjects, addProject, finishProject, archiveProject } = useProjects();
 
 </script>

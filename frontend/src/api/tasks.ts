@@ -20,7 +20,7 @@ export async function getTaskById(pathId: number): Promise<Task>   {
         withCredentials: true
     }
     try {
-        const response = await axios.get(API_ROOT + '/api/task/1', config);
+        const response = await axios.get(API_ROOT + '/api/task/'+pathId, config);
         return response.data;
     } catch (error) {
         return <any>error;   

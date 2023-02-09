@@ -7,8 +7,6 @@ import { useRoute } from 'vue-router';
 
 export function useTasks() {
 
-    const routeId = ref<any>();
-
     const specificTask = ref<Task>();
 
     const tasks = ref<Task[]>([]);
@@ -28,9 +26,9 @@ export function useTasks() {
     }
 
 
-    const getSpecificTaskById = async () => {
+    const getSpecificTaskById = async (id: number) => {
         try {
-            specificTask.value = await getTaskById(+routeId.value);
+            specificTask.value = await getTaskById(id);
         } catch (error) {
             console.log(error); // FIXME: Errorhandling
         }
@@ -88,7 +86,6 @@ export function useTasks() {
         newSingleTask,
         tasks,
         specificTask,
-        routeId,
         getTasks,
         finishTask,
         archiveTask,

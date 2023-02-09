@@ -16,38 +16,29 @@
         </ion-toolbar>
       </ion-header>
 
-<<<<<<< HEAD
-     
-
-      Task Details
-=======
-      Task Details {{ specificTask?.archived }}
->>>>>>> dc060f06f1ff91c3415847c04cff2561538dc560
+      Task Details 
         <ion-item
-          button
-          :router-link="'/tabs/task/' + task.id"
-          :key="task.id"
-          v-for="task in tasks">
-        <ion-grid v-if="task.id == 1">
+         >
+        <ion-grid>
           <ion-row>
             <ion-col size="1"> Title:</ion-col>
-            <ion-col size="4"> {{ task.title }} </ion-col>
+            <ion-col size="4"> {{ specificTask?.title }} </ion-col>
           </ion-row>
           <ion-row>
             <ion-col size="1"> Category:</ion-col>
-            <ion-col size="4"> {{ task.category }} </ion-col>
+            <ion-col size="4"> {{ specificTask?.category }} </ion-col>
           </ion-row>
           <ion-row>
             <ion-col size="1"> Start-Date:</ion-col>
-            <ion-col size="4"> {{ task.startDate }} </ion-col>
+            <ion-col size="4"> {{ specificTask?.startDate }} </ion-col>
           </ion-row>
           <ion-row>
             <ion-col size="1">End-Date:</ion-col>
-            <ion-col size="4"> {{ task.endDate }} </ion-col>
+            <ion-col size="4"> {{ specificTask?.endDate }} </ion-col>
           </ion-row>
           <ion-row>
             <ion-col size="1">Text:</ion-col>
-            <ion-col size="4"> {{ task.text }} </ion-col>
+            <ion-col size="4"> {{ specificTask?.text }} </ion-col>
           </ion-row>
           <ion-row>
             <ion-col size="1">Status:</ion-col>
@@ -76,16 +67,13 @@ import { onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { useTasks } from "../composables/useTasks";
 
-<<<<<<< HEAD
-const { newTask, tasks, task, getTasks, finishTask, archiveTask } =
-=======
-const { newTask, tasks, specificTask, routeId, getTasks, finishTask, archiveTask, getSpecificTaskById } =
->>>>>>> dc060f06f1ff91c3415847c04cff2561538dc560
+const { newTask, tasks, specificTask, getTasks, finishTask, archiveTask, getSpecificTaskById } =
   useTasks();
 
   const route = useRoute();
-  routeId.value = /[^/]*$/.exec(route.fullPath)?.[0] as string;
-  routeId.value = /[^/]*$/.exec(route.fullPath)?.[0];
+
+
+  onMounted( () => {getSpecificTaskById(+id)})
 
 const id = route.params.id;
 const title = route.params.title;
