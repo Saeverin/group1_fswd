@@ -1,5 +1,6 @@
-import { getAllTasks, updateTask, addNewTask, addNewProjectTask } from '@/api/tasks';
+import { getAllTasks, updateTask, addNewSingleTask, addNewProjectTask } from '@/api/tasks';
 import { Task } from '@/model/task';
+import { SingleTask } from '@/model/singleTask';
 import { ProjectTask } from '@/model/projectTask';
 import { onMounted, ref } from 'vue';
 
@@ -10,6 +11,8 @@ export function useTasks() {
     const newTask = ref<Task>({});
 
     const newProjectTask = ref<ProjectTask>({});
+
+    const newSingleTask = ref<SingleTask>({});
 
     const getTasks = async () => {
         try {
@@ -38,10 +41,10 @@ export function useTasks() {
         }
     }
 
-    const addTask = async () => {
+    const addSingleTask = async () => {
         try {
             // add the new todo and update the list of all todos afterwards
-            await addNewTask(newTask.value);
+            await addNewSingleTask(newSingleTask.value);
             getTasks();
         } catch (error) {
             console.log(error); // FIXME: Errorhandling
@@ -63,12 +66,13 @@ export function useTasks() {
     return {
         newTask,
         newProjectTask,
+        newSingleTask,
         tasks,
         getTasks,
-        addTask,
         finishTask,
         archiveTask,
-        addProjectTask
+        addProjectTask,
+        addSingleTask
     }
 }
 
