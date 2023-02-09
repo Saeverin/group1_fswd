@@ -92,7 +92,8 @@ export function useTasks() {
         getTasks,
         finishTask,
         archiveTask,
-        addProjectTask
+        addProjectTask,
+        addSingleTask
     }
 }
 
