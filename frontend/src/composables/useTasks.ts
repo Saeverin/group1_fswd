@@ -30,7 +30,7 @@ export function useTasks() {
 
     const getSpecificTaskById = async () => {
         try {
-            task.value = await getTaskById(+routeId);
+            task.value = await getTaskById(+routeId.value);
         } catch (error) {
             console.log(error); // FIXME: Errorhandling
         }
@@ -90,7 +90,6 @@ export function useTasks() {
         task,
         routeId,
         getTasks,
-        addTask,
         finishTask,
         archiveTask,
         addProjectTask

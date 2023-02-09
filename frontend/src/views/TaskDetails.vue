@@ -71,13 +71,13 @@ import { useRoute } from "vue-router";
 import { useTasks } from "../composables/useTasks";
 import { getTaskById } from "../api/tasks"
 
-const { newTask, tasks, task, routeId, getTasks, addTask, finishTask, archiveTask, getSpecificTaskById } =
+const { newTask, tasks, task, routeId, getTasks, finishTask, archiveTask, getSpecificTaskById } =
   useTasks();
 
   const route = useRoute();
   routeId.value = /[^/]*$/.exec(route.fullPath)?.[0] as string;
 
-const routeId = /[^/]*$/.exec(route.fullPath)?.[0];
+routeId.value = /[^/]*$/.exec(route.fullPath)?.[0];
 
 const id = route.params.id;
 const title = route.params.title;
