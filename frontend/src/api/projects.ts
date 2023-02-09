@@ -14,12 +14,14 @@ export async function getAllProJects(): Promise<Project[]>   {
     }
 }
 
-export async function addNewProJect(newProJect: Project): Promise<any>   {
+export async function addNewProJect(newProject: Project): Promise<any>   {
+    newProject.deadline = newProject.deadline?.substring(0,19)
+
     const config = {        
         withCredentials: true
     }
     try {
-        const response = await axios.post(API_ROOT + '/api/projects', newProJect, config);
+        const response = await axios.post(API_ROOT + '/api/project', newProject, config);
         return response.data;
     } catch (error) {
         return error;   

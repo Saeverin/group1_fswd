@@ -42,7 +42,7 @@
           </ion-row>
           <ion-row>
             <ion-col size="1">Status:</ion-col>
-            <ion-col size="4"> {{ done }} </ion-col>            
+            <ion-col size="4"> {{ specificTask?.done }} </ion-col>            
           </ion-row>
         </ion-grid>
         </ion-item>
@@ -76,12 +76,6 @@ const { newTask, tasks, specificTask, getTasks, finishTask, archiveTask, getSpec
   onMounted( () => {getSpecificTaskById(+id)})
 
 const id = route.params.id;
-const title = route.params.title;
-const done = route.params.done;
-const category = route.params.category;
-const text = route.params.text;
-const startDate = route.params.startDate;
-const endDate = route.params.endDate;
 </script>
   
 <style scoped>
