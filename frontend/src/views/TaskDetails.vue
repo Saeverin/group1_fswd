@@ -76,8 +76,7 @@ const { newTask, tasks, task, routeId, getTasks, finishTask, archiveTask, getSpe
 
   const route = useRoute();
   routeId.value = /[^/]*$/.exec(route.fullPath)?.[0] as string;
-
-routeId.value = /[^/]*$/.exec(route.fullPath)?.[0];
+  routeId.value = /[^/]*$/.exec(route.fullPath)?.[0];
 
 const id = route.params.id;
 const title = route.params.title;
