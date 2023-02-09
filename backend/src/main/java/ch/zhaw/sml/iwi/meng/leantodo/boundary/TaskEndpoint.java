@@ -31,6 +31,12 @@ public class TaskEndpoint {
         return  taskController.listAllTasks(principal.getName());        
     }
 
+    @RequestMapping(path = "/api/task/{id}", method = RequestMethod.GET)
+    @PreAuthorize("isAuthenticated() AND hasRole('USER')")
+    public Task taskById(@PathVariable("id") Long id, Principal principal) {
+        return  taskController.getTaskById(id);        
+    }
+
     /* @RequestMapping(path = "/api/project/{id}/task", method = RequestMethod.GET)
     @PreAuthorize("isAuthenticated() AND hasRole('USER')")
     public List<ProjectTask> getProjectTasks(Principal principal) {

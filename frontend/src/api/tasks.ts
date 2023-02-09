@@ -14,6 +14,17 @@ export async function getAllTasks(): Promise<Task[]>   {
         return <any>error;   
     }
 }
+export async function getTaskById(pathId: number): Promise<Task>   { 
+    const config = {        
+        withCredentials: true
+    }
+    try {
+        const response = await axios.get(API_ROOT + '/api/task/'+ pathId, config);
+        return response.data;
+    } catch (error) {
+        return <any>error;   
+    }
+}
 
 export async function addNewTask(newTask: Task): Promise<any>   {
     const config = {        

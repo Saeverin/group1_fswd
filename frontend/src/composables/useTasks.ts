@@ -1,9 +1,14 @@
-import { getAllTasks, updateTask, addNewTask, addNewProjectTask } from '@/api/tasks';
+import { getAllTasks, updateTask, addNewTask, addNewProjectTask, getTaskById } from '@/api/tasks';
 import { Task } from '@/model/task';
 import { ProjectTask } from '@/model/projectTask';
 import { onMounted, ref } from 'vue';
+import { useRoute } from 'vue-router';
 
 export function useTasks() {
+
+    const routeId = ref<any>();
+
+    const task = ref<Task>();
 
     const tasks = ref<Task[]>([]);
 
@@ -18,6 +23,16 @@ export function useTasks() {
             console.log(error); // FIXME: Errorhandling
         }
     }
+
+
+    const getSpecificTaskById = async () => {
+        try {
+            task.value = await getTaskById(+routeId);
+        } catch (error) {
+            console.log(error); // FIXME: Errorhandling
+        }
+    }
+
 
     const finishTask = async (task: Task) => {
         try {
@@ -64,11 +79,15 @@ export function useTasks() {
         newTask,
         newProjectTask,
         tasks,
+        task,
+        routeId,
         getTasks,
+        getSpecificTaskById,
         addTask,
         finishTask,
         archiveTask,
         addProjectTask
+        
     }
 }
 

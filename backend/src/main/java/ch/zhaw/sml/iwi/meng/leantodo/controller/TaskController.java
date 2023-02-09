@@ -21,6 +21,10 @@ public class TaskController {
         return taskRepository.findAllButArchivedByOwner(loginName);
     }
 
+    public Task getTaskById(Long id) {
+        return taskRepository.findById(id).get();
+    }
+
     public void persistTask(Task newTask, String owner) {
         newTask.setOwner(owner);
         newTask.setId(null);
