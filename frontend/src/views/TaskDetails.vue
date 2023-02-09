@@ -16,7 +16,9 @@
         </ion-toolbar>
       </ion-header>
 
-      Task Details {{ task?.title }}
+     
+
+      Task Details
         <ion-item
           button
           :router-link="'/tabs/task/' + task.id"
@@ -69,15 +71,14 @@ import {
 import { onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { useTasks } from "../composables/useTasks";
-import { getTaskById } from "../api/tasks"
 
-const { newTask, tasks, task, routeId, getTasks, finishTask, archiveTask, getSpecificTaskById } =
+const { newTask, tasks, task, getTasks, finishTask, archiveTask } =
   useTasks();
 
   const route = useRoute();
-  routeId.value = /[^/]*$/.exec(route.fullPath)?.[0] as string;
+  
 
-routeId.value = /[^/]*$/.exec(route.fullPath)?.[0];
+
 
 const id = route.params.id;
 const title = route.params.title;
