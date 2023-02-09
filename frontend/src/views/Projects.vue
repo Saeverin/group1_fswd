@@ -28,12 +28,30 @@
           </ion-grid>
         </ion-item>
       </ion-list>
-      <ion-item>
-        <ion-input type="text" placeholder="New Project Title" v-model="newProject.title"></ion-input>
-      </ion-item>
-      <div padding>
-        <ion-button @click="addProject()">Add New Project</ion-button>
-      </div>     
+      
+      <div>
+        <ion-button @click="setOpen(true)">Create Project</ion-button>
+        <ion-modal
+          :is-open="isOpen"
+          @ionModalDidDismiss="
+            () => {
+              isOpen = false;
+            }
+          "
+        >
+          <ion-header>
+            <ion-toolbar>
+              <ion-title>Create new Project</ion-title>
+              <ion-buttons slot="end">
+                <ion-button @click="setOpen(false)">Close</ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+          </ion-header>
+          <ion-content>
+            <create-project></create-project>
+          </ion-content>
+        </ion-modal>
+      </div>
       
     </ion-content>
   </ion-page>
@@ -54,8 +72,17 @@ import {
   IonButton,
   IonInput,
 } from "@ionic/vue";
+import { ref } from "vue";
 import { useProjects } from "../composables/useProjects";
+import createProject from "@/components/createProject.vue";
 
 const { newProject, projects, getProjects, addProject, finishProject, archiveProject } = useProjects();
+const isOpen = ref(false);
+
+function setOpen(open: boolean) {
+  //Öffnen/Schliessen + update Tasklist
+  isOpen.value = open;
+  getProjects();
+}
 
 </script>

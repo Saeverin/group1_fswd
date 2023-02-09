@@ -25,7 +25,6 @@ public class ProjectController {
     public void persistProject(Project newProject, String owner) {
         newProject.setId(null);
         // We only create empty projects
-        newProject.getProjectTasks().clear();
         newProject.setOwner(owner);
         projectRepository.save(newProject);
     }

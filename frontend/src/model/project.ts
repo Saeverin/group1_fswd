@@ -4,5 +4,5 @@ export interface Project {
     archived?: boolean;
     done?: boolean;
     priority?: number; //@Max: Enum??
-    deadline?: Date;
+    deadline?: string;
 }
