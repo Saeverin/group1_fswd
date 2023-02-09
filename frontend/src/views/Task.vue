@@ -55,21 +55,11 @@
           </ion-grid>
         </ion-item>
       </ion-list>
-      <ion-item>
-        <ion-input
-          type="text"
-          placeholder="New Task Title"
-          v-model="newTask.title"
-        ></ion-input>
-      </ion-item>
-      <div padding>
-        <ion-button @click="addTask()">Add New Task</ion-button>
-      </div>
 
-      <create-projecttask></create-projecttask>
+      
 
       <div>
-        <ion-button @click="setOpen(true)">Create Task (Neu)</ion-button>
+        <ion-button @click="setOpen(true)">Create Task</ion-button>
         <!-- MODAL -->
 
         <ion-modal :is-open="isOpen" @ionModalDidDismiss="() => {isOpen = false;}">
@@ -82,7 +72,7 @@
             </ion-toolbar>
           </ion-header>
           <ion-content>
-            <p>ASDF TEST TEST INHALT MODAL</p>
+            <create-projecttask></create-projecttask>
           </ion-content>
         </ion-modal>
       </div>
