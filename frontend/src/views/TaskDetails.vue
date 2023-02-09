@@ -51,6 +51,8 @@ import { useRoute } from "vue-router";
 
 const route = useRoute();
 
+const routeId = /[^/]*$/.exec(route.fullPath)?.[0];
+
 const id = route.params.id;
 const title = route.params.title;
 const done = route.params.done;
