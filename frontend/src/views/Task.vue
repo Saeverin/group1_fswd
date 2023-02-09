@@ -100,12 +100,13 @@ import {
 import { useTasks } from "../composables/useTasks";
 import { ref } from "vue";
 import createProjecttask from '@/components/createProjecttask.vue';
-/* import modalCreateProjecttask from '../components/modalCreateProjecttask.vue'; */
 
 const isOpen = ref(false);
 
 function setOpen(open: boolean) {
+  //Öffnen/Schliessen + update Tasklist
   isOpen.value = open;
+  getTasks();
 }
 
 const { newTask, tasks, getTasks, addTask, finishTask, archiveTask } =
