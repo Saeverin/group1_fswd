@@ -46,20 +46,12 @@
           </ion-row>
           <ion-row>
             <ion-col>Status:</ion-col>
-            <ion-col>
-                <ion-button
-                  color="danger"
-                  v-if="!specificTask?.done && !specificTask?.archived"
-                  @click="finishTask(specificTask)"
-                  >Finish</ion-button
-                >
-                <ion-button
-                  color="success"
-                  v-if="specificTask?.done && !specificTask?.archived"
-                  @click="archiveTask(specificTask)"
-                  >Archive</ion-button
-                >
-              </ion-col>  
+            <!-- <ion-col>
+                <ion-button color="danger" v-if="!task.done && !task.archived"
+                  @click="finishTask(task)">Finish</ion-button>
+                <ion-button color="success" v-if="task.done && !task.archived"
+                  @click="archiveTask(task)">Archive</ion-button>
+              </ion-col>  --> 
           </ion-row>
         </ion-grid>
         </ion-item>
