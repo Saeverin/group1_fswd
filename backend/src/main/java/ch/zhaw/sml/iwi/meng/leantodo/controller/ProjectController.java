@@ -53,6 +53,14 @@ public class ProjectController {
         projectRepository.save(project);
     }
 
+/*     public void updateProjectById(Long id){
+        Project project = projectRepository.getOne(id);
+        project.setDeadline(deadline); //warum deadline nicht resolvable?
+        project.setTitle(title); //dito
+    } */
+
+
+
     /* public List<ProjectTask> listTasksByProject(Long projectId, String loginName) {
         return projectRepository.findAllButArchivedByOwner(loginName);
     } */
