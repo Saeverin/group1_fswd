@@ -106,7 +106,7 @@ import {
   IonInput,
 } from "@ionic/vue";
 import { useTasks } from "../composables/useTasks";
-import { defineComponent } from 'vue';
+import { defineComponent, onUpdated } from 'vue';
 import { ref } from "vue";
 import createProjecttask from "@/components/createProjecttask.vue";
 import createSingletask from "@/components/createSingletask.vue";
@@ -114,6 +114,8 @@ import createSingletask from "@/components/createSingletask.vue";
 
 const isOpen = ref(false);
 const projectTask = ref<any>(null);
+
+onUpdated(() => getTasks())
 
 function setProjectFalse() {
   projectTask.value = false;
