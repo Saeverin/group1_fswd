@@ -29,7 +29,9 @@
     IonButton,
     IonButtons,
     IonInput,
+    IonItem
   } from "@ionic/vue";
+  import { defineComponent } from 'vue';
   import { useProjects } from "../composables/useProjects";
   
   const { newProject, addProject } = useProjects();

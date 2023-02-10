@@ -106,6 +106,7 @@ import {
   IonInput,
 } from "@ionic/vue";
 import { useTasks } from "../composables/useTasks";
+import { defineComponent } from 'vue';
 import { ref } from "vue";
 import createProjecttask from "@/components/createProjecttask.vue";
 import createSingletask from "@/components/createSingletask.vue";

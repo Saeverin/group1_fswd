@@ -74,6 +74,7 @@ import {
   IonModal,
   IonButtons
 } from "@ionic/vue";
+import { defineComponent } from 'vue';
 import { ref } from "vue";
 import { useProjects } from "../composables/useProjects";
 import createProject from "@/components/createProject.vue";

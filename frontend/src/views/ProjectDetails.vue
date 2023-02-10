@@ -103,7 +103,11 @@
     IonTitle,
     IonModal,
     IonToolbar,
+    IonRow,
+    IonGrid,
+    IonCol
   } from "@ionic/vue";
+  import { defineComponent } from 'vue';
   import { onMounted, ref } from "vue";
   import { useRoute } from "vue-router";
   import { useProjects } from "../composables/useProjects";

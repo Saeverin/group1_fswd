@@ -50,7 +50,9 @@ import {
   IonButton,
   IonButtons,
   IonInput,
+  IonItem
 } from "@ionic/vue";
+import { defineComponent } from 'vue';
 import { useTasks } from "../composables/useTasks";
 
 const { newSingleTask, addSingleTask } = useTasks();
