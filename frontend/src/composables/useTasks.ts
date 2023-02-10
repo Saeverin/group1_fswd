@@ -1,4 +1,4 @@
-import { getAllTasks, addNewSingleTask, addNewProjectTask, getTaskById, getAllTasksByProject, updateSingleTask } from '@/api/tasks';
+import { getAllTasks, addNewSingleTask, addNewProjectTask, getTaskById, getAllTasksByProject, updateSingleTask, updateProjectTask } from '@/api/tasks';
 import { Task } from '@/model/task';
 import { SingleTask } from '@/model/singleTask';
 import { ProjectTask } from '@/model/projectTask';
@@ -47,6 +47,17 @@ export function useTasks() {
             newSingleTask.value.done = true;
             newSingleTask.value.type = "SingleTask";
             updateSingleTask(newSingleTask.value, id);
+        } catch (error) {
+            return(error);
+            console.log(error); // FIXME: Errorhandling
+        }
+    }
+
+    const finishProjectTask = async (id: number) => {
+        try {
+            newProjectTask.value.done = true;
+            newProjectTask.value.type = "ProjectTask";
+            updateProjectTask(newProjectTask.value, id);
         } catch (error) {
             return(error);
             console.log(error); // FIXME: Errorhandling
