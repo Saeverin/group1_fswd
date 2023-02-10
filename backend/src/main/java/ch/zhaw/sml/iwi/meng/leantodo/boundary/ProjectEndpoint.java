@@ -54,6 +54,8 @@ public class ProjectEndpoint {
     public void updateProject(@PathVariable("id") Long id,@RequestBody Project project, Principal principal) {
         projectController.updateProjectById(project, id);        
     }
+
+    
     
 
 }
