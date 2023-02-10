@@ -100,8 +100,6 @@ export function useTasks() {
         }
     }
 
-    onMounted(getTasks);
-
     return {
         newTask,
         newProjectTask,
@@ -116,8 +114,4 @@ export function useTasks() {
         addSingleTask,
         getSpecificTaskById
     }
-}
-
-function getTasks() {
-    throw new Error('Function not implemented.');
 }
