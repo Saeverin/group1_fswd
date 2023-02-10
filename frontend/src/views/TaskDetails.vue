@@ -79,7 +79,7 @@ import { useRoute } from "vue-router";
 import { useTasks } from "../composables/useTasks";
 import { ref } from "vue";
 
-const { newTask, tasks, specificTask, getTasks, finishSingleTask, getSpecificTaskById } =
+const { newTask, tasks, specificTask, getTasks, finishSingleTask, finishProjectTask, getSpecificTaskById } =
   useTasks();
 
   const route = useRoute();
@@ -107,10 +107,10 @@ function finishTask() {
   if(specificTask.value?.type == "SingleTask") {
     finishSingleTask(+TaskId)
   } else {
-    console.log("hallo")
-  }
+    (specificTask.value?.type == "ProjectTask") 
+    finishProjectTask(+TaskId)
 }
-
+}
 
 
 
