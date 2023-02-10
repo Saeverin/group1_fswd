@@ -131,7 +131,7 @@ function setOpen(open: boolean) {
   getTasks();
 }
 
-const { newTask, tasks, getTasks, finishTask, archiveTask, } =
+const { newTask, tasks, getTasks } =
   useTasks();
 </script>
 
