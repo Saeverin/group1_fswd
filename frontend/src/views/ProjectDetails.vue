@@ -84,6 +84,8 @@
         </ion-modal>
       </div>
 
+      <ion-button @click="deleteProject(+id)" :router-link="'/tabs/projects'" color="danger">Delete Project</ion-button>
+
       </ion-content>
     </ion-page>
   </template>
@@ -108,7 +110,7 @@
   import { useTasks } from "../composables/useTasks";
   import createProjecttask from "@/components/createProjecttask.vue";
   
-  const { specificProject, getSpecificProjectById } = useProjects();
+  const { specificProject, getSpecificProjectById, deleteProject } = useProjects();
   const { tasks, getTasksByProject } = useTasks();
   const isOpen = ref(false);
 

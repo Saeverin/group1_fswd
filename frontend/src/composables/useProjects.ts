@@ -1,4 +1,4 @@
-import { getAllProJects, updateProJect, addNewProJect, getProjectById } from '@/api/projects';
+import { getAllProJects, updateProJect, addNewProJect, getProjectById, deleteProjectById } from '@/api/projects';
 import  { Project } from '../model/project';
 import { onMounted, ref } from 'vue';
 
@@ -21,6 +21,14 @@ export function useProjects() {
     const getSpecificProjectById = async (id: number) => {
         try {
             specificProject.value = await getProjectById(id);
+        } catch (error) {
+            console.log(error); // FIXME: Errorhandling
+        }
+    }
+
+    const deleteProject = async (id:number) => {
+        try {
+            await deleteProjectById(id);
         } catch (error) {
             console.log(error); // FIXME: Errorhandling
         }
@@ -63,6 +71,7 @@ export function useProjects() {
         specificProject,
         getProjects,
         getSpecificProjectById,
+        deleteProject,
         addProject,
         finishProject,
         archiveProject

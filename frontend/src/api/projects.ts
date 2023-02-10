@@ -26,6 +26,17 @@ export async function getProjectById(pathId: number): Promise<Project>   {
     }
 }
 
+export async function deleteProjectById(pathId: number): Promise<any>   { 
+    const config = {        
+        withCredentials: true
+    }
+    try {
+        const response = await axios.delete(API_ROOT + '/api/project/'+pathId, config);
+    } catch (error) {
+        return <any>error;   
+    }
+}
+
 export async function addNewProJect(newProject: Project): Promise<any>   {
     newProject.deadline = newProject.deadline?.substring(0,19)
 

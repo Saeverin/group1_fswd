@@ -48,7 +48,7 @@
             </ion-toolbar>
           </ion-header>
           <ion-content>
-            <create-project @some-event="setOpen(false); getProjects();"></create-project>
+            <create-project @some-event="getProjects(); setOpen(false); "></create-project>
           </ion-content>
         </ion-modal>
       </div>
@@ -71,6 +71,8 @@ import {
   IonList,
   IonButton,
   IonInput,
+  IonModal,
+  IonButtons
 } from "@ionic/vue";
 import { ref } from "vue";
 import { useProjects } from "../composables/useProjects";

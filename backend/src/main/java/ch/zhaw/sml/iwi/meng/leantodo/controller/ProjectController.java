@@ -26,6 +26,10 @@ public class ProjectController {
         return projectRepository.findById(id).get();
     }
 
+    public void deleteProjectById(Long id) {
+        projectRepository.deleteById(id);
+    }
+
     public void persistProject(Project newProject, String owner) {
         newProject.setId(null);
         // We only create empty projects
