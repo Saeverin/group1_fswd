@@ -60,5 +60,13 @@ public class TaskController {
 
         taskRepository.save(orig);
     }
+
+    public void archiveTask(Task task, Long id) {
+        Task orig = taskRepository.findById(id).get();
+        
+        orig.setDone(task.getDone());
+
+        taskRepository.save(orig);
+    }
     
 }

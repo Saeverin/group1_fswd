@@ -103,3 +103,29 @@ export async function updateProjectTask(task: ProjectTask, taskId: number): Prom
     }
 } 
 
+export async function archiveSingleTask(task: SingleTask, taskId: number): Promise<any>   {
+    const config = {        
+        withCredentials: true
+    }
+    try {
+        console.log(task);
+        const response = await axios.put(API_ROOT + '/api/task/'+taskId, task, config);
+        return response.data;
+    } catch (error) {
+        return error;   
+    }
+} 
+
+export async function archiveProjectTask(task: ProjectTask, taskId: number): Promise<any>   {
+    const config = {        
+        withCredentials: true
+    }
+    try {
+        console.log(task);
+        const response = await axios.put(API_ROOT + '/api/task/'+taskId, task, config);
+        return response.data;
+    } catch (error) {
+        return error;   
+    }
+} 
+
