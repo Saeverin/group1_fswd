@@ -42,7 +42,7 @@
           </ion-row>
           <ion-row>
             <ion-col>Project:</ion-col>
-            <ion-col> {{ specificTask?.project }} </ion-col>
+            <ion-col> {{ specificTask?.project?.title }} </ion-col>
           </ion-row>
           <ion-row>
             <ion-col>Status:</ion-col>
