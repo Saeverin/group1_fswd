@@ -13,29 +13,29 @@
       </ion-header>
       <ion-list>
         <ion-row>
-          <ion-col>Title</ion-col>
-          <ion-col>Category</ion-col>
-          <ion-col>Enddate</ion-col>
-          <ion-col>Project</ion-col>
+          <ion-col class="col-header">Title</ion-col>
+          <ion-col class="col-header">Category</ion-col>
+          <ion-col class="col-header">Enddate</ion-col>
+          <ion-col class="col-header">Project</ion-col>
         </ion-row>
-        <ion-item button :router-link="'/tabs/task/' + task.id" :key="task.id" v-for="task in tasks">
-          <ion-grid>
-            <ion-row>
-              <ion-col>
+        
+          
+            <ion-row  button :router-link="'/tabs/task/' + task.id" :key="task.id" v-for="task in tasks">
+              <ion-col class="col-content">
                 {{ task.title }}
               </ion-col>
-              <ion-col>
+              <ion-col class="col-content">
                 {{ task.category }}
               </ion-col>
-              <ion-col>
+              <ion-col class="col-content">
                 {{ task.endDate }}
               </ion-col>
-              <ion-col>
+              <ion-col class="col-content">
                 {{ task.project?.title }}
               </ion-col>
             </ion-row>
-          </ion-grid>
-        </ion-item>
+          
+    
       </ion-list>
 
       <div>
@@ -132,3 +132,23 @@ function setOpen(open: boolean) {
 const { newTask, tasks, getTasks, finishTask, archiveTask, } =
   useTasks();
 </script>
+
+<style scoped>
+ion-col {
+  background-color: #71a4f1;
+  border: solid 1px #fff;
+  color: #fff;
+  text-align: left;
+}
+
+.col-header
+{
+  font-weight: bold;
+  color: black;
+}
+
+.col-content
+{
+  color: black;
+}
+</style>
