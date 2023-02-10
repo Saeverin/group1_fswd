@@ -35,7 +35,7 @@
       </ion-select>
     </ion-item>
   </ion-list>
-  <ion-button @click="errorHandling()">Add New Task</ion-button>
+  <ion-button @click="errorHandling(); $emit('someEvent')">Add New Task</ion-button>
 
   <ion-modal :keep-contents-mounted="true">
     <ion-datetime v-model="newProjectTask.startDate" id="datetimestart"></ion-datetime>
@@ -66,8 +66,7 @@ const { newProjectTask, addProjectTask } = useTasks();
 const { getProjects, projects } = useProjects();
 
 function errorHandling(){
-  console.log(addProjectTask());
-  console.log("hallihallo");
+  addProjectTask();
 }
 </script>
   

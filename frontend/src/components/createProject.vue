@@ -9,7 +9,7 @@
         <ion-datetime-button datetime="deadline"></ion-datetime-button>
       </ion-item>
     </ion-list>
-    <ion-button @click="addProject()">Add New Project</ion-button>
+    <ion-button @click="addProject(); $emit('someEvent')">Add New Project</ion-button>
   
     <ion-modal :keep-contents-mounted="true">
       <ion-datetime v-model="newProject.deadline" id="deadline"></ion-datetime>

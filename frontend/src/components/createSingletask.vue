@@ -27,7 +27,7 @@
       <ion-datetime-button datetime="datetimeend"></ion-datetime-button>
     </ion-item>
   </ion-list>
-  <ion-button @click="addSingleTask()">Add New Task</ion-button>
+  <ion-button @click="addSingleTask(); $emit('someEvent')">Add New Task</ion-button>
 
   <ion-modal :keep-contents-mounted="true">
     <ion-datetime v-model="newSingleTask.startDate" id="datetimestart"></ion-datetime>

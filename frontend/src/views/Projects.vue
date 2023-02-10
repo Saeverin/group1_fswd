@@ -48,7 +48,7 @@
             </ion-toolbar>
           </ion-header>
           <ion-content>
-            <create-project></create-project>
+            <create-project @some-event="setOpen(false); getProjects();"></create-project>
           </ion-content>
         </ion-modal>
       </div>
