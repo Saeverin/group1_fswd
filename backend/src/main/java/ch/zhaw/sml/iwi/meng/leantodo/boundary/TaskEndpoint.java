@@ -73,9 +73,9 @@ public class TaskEndpoint {
         taskController.updateTask(task, id);
     }
 
-    @RequestMapping(path = "/api/task/{id}", method = RequestMethod.PUT)
+   /*  @RequestMapping(path = "/api/task/{id}", method = RequestMethod.PUT)
     @PreAuthorize("isAuthenticated() AND hasRole('USER')")
     public void archiveTask(@PathVariable("id") Long id,@RequestBody Task task, Principal principal) {
         taskController.archiveTask(task, id);
-    }
+    } */
 }

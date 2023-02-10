@@ -49,7 +49,7 @@
                 <ion-button color="danger" v-if="!specificTask?.done"
                   @click="finishTask()">Finish</ion-button>
                 <ion-button color="success" v-if="!specificTask?.archived"
-                  >Archive</ion-button>
+                @click="archiveTask()">Archive</ion-button>
               </ion-col> 
           </ion-row>
         </ion-grid>
@@ -79,7 +79,7 @@ import { useRoute } from "vue-router";
 import { useTasks } from "../composables/useTasks";
 import { ref } from "vue";
 
-const { newTask, tasks, specificTask, getTasks, finishSingleTask, finishProjectTask, getSpecificTaskById } =
+const { newTask, tasks, specificTask, getTasks, finishSingleTask, finishProjectTask, archiveSingleTask, archiveProjectTask, getSpecificTaskById } =
   useTasks();
 
   const route = useRoute();
@@ -109,6 +109,15 @@ function finishTask() {
   } else {
     (specificTask.value?.type == "ProjectTask") 
     finishProjectTask(+TaskId)
+}
+}
+
+function archiveTask() {
+  if(specificTask.value?.type == "SingleTask") {
+    archiveSingleTask(+TaskId)
+  } else {
+    (specificTask.value?.type == "ProjectTask") 
+    archiveProjectTask(+TaskId)
 }
 }
 
