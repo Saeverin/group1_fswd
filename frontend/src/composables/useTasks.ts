@@ -1,4 +1,4 @@
-import { getAllTasks, updateTask, addNewSingleTask, addNewProjectTask, getTaskById, getAllTasksByProject } from '@/api/tasks';
+import { getAllTasks, addNewSingleTask, addNewProjectTask, getTaskById, getAllTasksByProject, updateTask } from '@/api/tasks';
 import { Task } from '@/model/task';
 import { SingleTask } from '@/model/singleTask';
 import { ProjectTask } from '@/model/projectTask';
@@ -61,7 +61,10 @@ export function useTasks() {
             return(error);
             console.log(error); // FIXME: Errorhandling
         }
-    }
+    } 
+
+   
+    
 
     const addSingleTask = async () => {
         try {
