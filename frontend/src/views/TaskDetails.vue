@@ -79,8 +79,11 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
+  IonGrid,
+  IonRow,
+  IonCol
 } from "@ionic/vue";
-import { onMounted } from "vue";
+import { defineComponent, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { useTasks } from "../composables/useTasks";
 import { ref } from "vue";
