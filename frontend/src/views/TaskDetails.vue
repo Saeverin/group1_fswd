@@ -46,9 +46,9 @@
           <ion-row>
             <ion-col>Status:</ion-col>
             <ion-col>
-                <ion-button color="danger" v-if="!specificTask?.done && !specificTask?.archived"
-                  @click="finishSingleTask(+TaskId)">Finish</ion-button>
-                <ion-button color="success" v-if="!specificTask?.done && !specificTask?.archived"
+                <ion-button color="danger" v-if="!specificTask?.done"
+                  @click="finishTask()">Finish</ion-button>
+                <ion-button color="success" v-if="!specificTask?.archived"
                   >Archive</ion-button>
               </ion-col> 
           </ion-row>
@@ -101,6 +101,14 @@ function setOpen(open: boolean) {
   //Öffnen/Schliessen + update Tasklist
   isOpen.value = open;
   getTasks();
+}
+
+function finishTask() {
+  if(specificTask.value?.type == "SingleTask") {
+    finishSingleTask(+TaskId)
+  } else {
+    console.log("hallo")
+  }
 }
 
 

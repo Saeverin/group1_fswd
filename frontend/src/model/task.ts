@@ -10,4 +10,5 @@ export interface Task {
     startDate?: Date;
     endDate?: Date;
     project?: Project;
+    type?: string;
 }
