@@ -149,3 +149,102 @@ export async function archiveProjectTaskFail(){
     })
     await toastPutFail.present();
 }
+export async function getAllProjectsFail(){
+    const toastGetFail = await toastController.create({
+    message: 'Could not load all projects',
+    duration: 1500,
+    position: 'middle',
+    color: 'danger'
+})
+setTimeout(()=> toastGetFail.present(), 1500);
+}
+
+export async function getProjectByIdFail(){
+    const toastGetFail = await toastController.create({
+        message: 'Could not load Project Details',
+        duration: 1500,
+        position: 'middle',
+        color: 'danger'
+    })
+    await toastGetFail.present();
+} 
+
+export async function deleteProjectByIdSuccess(){
+    const toastPostSuccess = await toastController.create({
+        message: 'Project successfully deleted',
+        duration: 2000,
+        position: 'middle',
+        color: 'success'
+    })
+    await toastPostSuccess.present();
+}
+
+export async function deleteProjectByIdFail(){
+    const toastPostSuccess = await toastController.create({
+        message: 'Project could not be deleted',
+        duration: 2000,
+        position: 'middle',
+        color: 'danger'
+    })
+    await toastPostSuccess.present();
+}
+
+export async function changeProjectByIdSuccess(){
+    const toastPutSuccess = await toastController.create({
+        message: 'Project update successful',
+        duration: 2000,
+        position: 'middle',
+        color: 'success'
+    })
+    await toastPutSuccess.present();
+}
+
+export async function changeProjectByIdFail(){
+    const toastPutFail = await toastController.create({
+        message: 'Could not update project',
+        duration: 2000,
+        position: 'middle',
+        color: 'danger'
+    })
+    await toastPutFail.present();
+}
+
+export async function addNewProjectSuccess(){
+    const toastPostSuccess = await toastController.create({
+        message: 'Project creation successful',
+        duration: 2000,
+        position: 'middle',
+        color: 'success'
+    })
+    await toastPostSuccess.present();
+}
+
+export async function addNewProjectFail(){
+    const toastPostFail = await toastController.create({
+        message: 'Project creation unsuccessful',
+        duration: 2000,
+        position: 'middle',
+        color: 'danger'
+    })
+    await toastPostFail.present();
+}
+
+export async function updateProjectSuccess(){
+    const toastPutSuccess = await toastController.create({
+        message: 'Project update successful',
+        duration: 2000,
+        position: 'middle',
+        color: 'success'
+    })
+    await toastPutSuccess.present();
+}
+
+export async function updateProjectFail(){
+    const toastPutFail = await toastController.create({
+        message: 'Could not update project',
+        duration: 2000,
+        position: 'middle',
+        color: 'danger'
+    })
+    await toastPutFail.present();
+}
