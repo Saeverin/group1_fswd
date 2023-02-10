@@ -62,6 +62,28 @@
           </ion-grid>
         </ion-item>
       </ion-list>
+
+      <div>
+        <ion-button @click="setOpen(true)">Create Project Task</ion-button>
+        <ion-modal :is-open="isOpen" @ionModalDidDismiss="
+          () => {
+            isOpen = false;
+          }
+        ">
+          <ion-header>
+            <ion-toolbar>
+              <ion-title>Create new Project Task</ion-title>
+              <ion-buttons slot="end">
+                <ion-button @click="setOpen(false)">Close</ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+          </ion-header>
+          <ion-content>
+            <create-projecttask @some-event="setOpen(false); getTasksByProject(+id);"></create-projecttask>
+          </ion-content>
+        </ion-modal>
+      </div>
+
       </ion-content>
     </ion-page>
   </template>
@@ -77,19 +99,28 @@
     IonHeader,
     IonPage,
     IonTitle,
+    IonModal,
     IonToolbar,
   } from "@ionic/vue";
-  import { onMounted } from "vue";
+  import { onMounted, ref } from "vue";
   import { useRoute } from "vue-router";
   import { useProjects } from "../composables/useProjects";
   import { useTasks } from "../composables/useTasks";
+  import createProjecttask from "@/components/createProjecttask.vue";
   
   const { specificProject, getSpecificProjectById } = useProjects();
   const { tasks, getTasksByProject } = useTasks();
+  const isOpen = ref(false);
 
   const route = useRoute();
   
   const id = route.params.id;
+
+  function setOpen(open: boolean) {
+  //Öffnen/Schliessen + update Tasklist
+  isOpen.value = open;
+  getTasksByProject(+id);
+}
 
   onMounted( () => {
     getSpecificProjectById(+id)
