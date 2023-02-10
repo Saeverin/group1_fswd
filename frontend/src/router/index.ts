@@ -37,8 +37,8 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/views/ProjectDetails.vue')
       },
       {
-        path: 'timerecord',
-        component: () => import('@/views/Timerecord.vue')
+        path: 'archive',
+        component: () => import('@/views/Archive.vue')
       }
     ]
   }
