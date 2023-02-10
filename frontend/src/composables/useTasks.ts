@@ -42,7 +42,7 @@ export function useTasks() {
     }
 
 
-    /* const finishTask = async (specificTask: Task) => {
+    const finishTask = async (specificTask: Task) => {
         try {
             specificTask.done = true;
             updateTask(specificTask);
@@ -61,26 +61,9 @@ export function useTasks() {
             return(error);
             console.log(error); // FIXME: Errorhandling
         }
-    } */ 
+    } 
 
-    const finishTask = async (task: Task) => {
-        try {
-            task.done = true;
-            updateTask(task);
-        } catch (error) {
-            console.log(error); // FIXME: Errorhandling
-        }
-    }
-
-    const archiveTask = async (task: Task) => {
-        try {
-            task.archived = true;
-            await updateTask(task);
-            getTasks();
-        } catch (error) {
-            console.log(error); // FIXME: Errorhandling
-        }
-    }
+   
     
 
     const addSingleTask = async () => {

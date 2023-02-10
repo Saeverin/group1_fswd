@@ -77,7 +77,7 @@ export async function addNewProjectTask(newTask: ProjectTask): Promise<any>   {
     }
 }
 
-/* export async function updateTask(tasks: Task): Promise<any>   {
+export async function updateTask(tasks: Task): Promise<any>   {
     const config = {        
         withCredentials: true
     }
@@ -87,18 +87,6 @@ export async function addNewProjectTask(newTask: ProjectTask): Promise<any>   {
     } catch (error) {
         return error;   
     }
-}  */
-
-export async function updateTask(task: Task): Promise<any>   {
-    const config = {        
-        withCredentials: true
-    }
-    try {
-        const response = await axios.put(API_ROOT + '/api/task', task, config);
-        return response.data;
-    } catch (error) {
-        return error;   
-    }
-}
+} 
 
 
