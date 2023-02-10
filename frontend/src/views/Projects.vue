@@ -19,10 +19,7 @@
                 {{ project.title }}
               </ion-col>
               <ion-col>
-                <ion-button color="danger" v-if="!project.done && !project.archived"
-                  @click="finishProject(project)">Finish</ion-button>
-                <ion-button color="success" v-if="project.done && !project.archived"
-                  @click="archiveProject(project)">Archive</ion-button>
+                {{ project.deadline }}
               </ion-col>
             </ion-row>
           </ion-grid>
@@ -72,7 +69,8 @@ import {
   IonButton,
   IonInput,
   IonModal,
-  IonButtons
+  IonButtons,
+  IonDatetime
 } from "@ionic/vue";
 import { defineComponent, onActivated, onBeforeUpdate, onMounted, onUpdated } from 'vue';
 import { ref } from "vue";
