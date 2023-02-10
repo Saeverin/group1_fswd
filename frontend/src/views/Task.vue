@@ -72,15 +72,6 @@
           </ion-content>
         </ion-modal>
       </div>
-      <!--
-@TODO
-- Modal als component nutzen
-<modal-create-projecttask></modal-create-projecttask>
-
-- "Success" in createProjecttask (ion-toast?) bei Erstellung
-
-- Nach createProjecttask modal schliessen
--->
     </ion-content>
   </ion-page>
 </template>
