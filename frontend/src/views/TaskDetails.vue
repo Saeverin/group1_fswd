@@ -47,9 +47,9 @@
             <ion-col>Status:</ion-col>
             <ion-col>
                 <ion-button color="danger" v-if="!specificTask?.done && !specificTask?.archived"
-                  @click="finishTask(specificTask)">Finish</ion-button>
+                  @click="finishSingleTask(+TaskId)">Finish</ion-button>
                 <ion-button color="success" v-if="!specificTask?.done && !specificTask?.archived"
-                  @click="archiveTask(specificTask)">Archive</ion-button>
+                  >Archive</ion-button>
               </ion-col> 
           </ion-row>
         </ion-grid>
@@ -79,10 +79,12 @@ import { useRoute } from "vue-router";
 import { useTasks } from "../composables/useTasks";
 import { ref } from "vue";
 
-const { newTask, tasks, specificTask, getTasks, finishTask, archiveTask, getSpecificTaskById } =
+const { newTask, tasks, specificTask, getTasks, finishSingleTask, getSpecificTaskById } =
   useTasks();
 
   const route = useRoute();
+
+  const TaskId = route.params.id;
 
   const isOpen = ref(false);
 const projectTask = ref<any>(null);

@@ -53,15 +53,12 @@ public class TaskController {
         taskRepository.save(newProjectTask);
     }
 
-    public void updateTask(Task task, String owner) {
-        Task orig = taskRepository.getOne(task.getId());
-        // Check if the original ToDo was present and that it belonged to the same owner
-        if(orig == null || !orig.getOwner().equals(owner)) {
-            return;
-        }
-        // Ok, let's overwrite the existing toDo.
-        task.setOwner(owner); // Set the owner because this property is ignored in the Rest API
-        taskRepository.save(task);
+    public void updateTask(Task task, Long id) {
+        Task orig = taskRepository.findById(id).get();
+        
+        orig.setDone(task.getDone());
+
+        taskRepository.save(orig);
     }
     
 }

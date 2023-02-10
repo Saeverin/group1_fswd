@@ -77,12 +77,13 @@ export async function addNewProjectTask(newTask: ProjectTask): Promise<any>   {
     }
 }
 
-export async function updateTask(tasks: Task): Promise<any>   {
+export async function updateSingleTask(task: SingleTask, taskId: number): Promise<any>   {
     const config = {        
         withCredentials: true
     }
     try {
-        const response = await axios.put(API_ROOT + '/api/task', tasks, config);
+        console.log(task);
+        const response = await axios.put(API_ROOT + '/api/task/'+taskId, task, config);
         return response.data;
     } catch (error) {
         return error;   
