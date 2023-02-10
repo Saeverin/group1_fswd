@@ -17,27 +17,33 @@
         </ion-header>
   
         <h1 class="project_details_title">Project Details</h1>
-        <ion-icon button @click="test()" class="project_details_edit" :icon="createOutline"></ion-icon>
+        <ion-icon button @click="toggleEdit()" class="project_details_edit" :icon="createOutline"></ion-icon>
+        <ion-icon button @click="changeProject(+id); toggleEdit()" :icon="checkmarkOutline" class="project_details_edit" :class="{editMode: !editMode}"></ion-icon>
+        <ion-icon button @click="toggleEdit()" :icon="closeOutline" class="project_details_edit" :class="{editMode: !editMode}"></ion-icon>
         <br />
         <ion-list>
           <ion-grid>
             <ion-row>
               <ion-col> ID:</ion-col>
-              <ion-col> {{ specificProject?.id }} </ion-col>
+              <ion-col> <ion-item><ion-input :value="specificProject?.id" :disabled="true"></ion-input></ion-item> </ion-col>
             </ion-row>
             <ion-row>
               <ion-col> Titel:</ion-col>
-              <ion-col> <ion-input v-bind="specificProject?.title"> {{ specificProject?.title }}</ion-input> </ion-col>
+              <ion-col> <ion-item><ion-input v-model="newProject.title" :value="specificProject?.title" :disabled="!editMode"></ion-input></ion-item>  </ion-col>
             </ion-row>
               <ion-row>
                 <ion-col> Done:  </ion-col>
-                <ion-col> {{ specificProject?.done }} </ion-col>
+                <ion-col> <ion-item><ion-checkbox :value="(specificProject?.done)" :disabled="true"></ion-checkbox></ion-item> </ion-col>
               </ion-row>
               <ion-row>
               <ion-col> Deadline:</ion-col>
-              <ion-col> {{ specificProject?.deadline }} </ion-col>
+              <ion-col> <ion-item><ion-datetime-button datetime="deadline" :disabled="!editMode"></ion-datetime-button></ion-item>   </ion-col>
             </ion-row>
           </ion-grid>
+
+          <ion-modal :keep-contents-mounted="true">
+            <ion-datetime v-model="newProject.deadline" :value="specificProject?.deadline" id="deadline"></ion-datetime>
+         </ion-modal>
         </ion-list>
 
         <h1>Project Tasks</h1>
@@ -99,6 +105,8 @@
     IonList,
     IonInput,
     IonIcon,
+    IonDatetime,
+    IonDatetimeButton,
     IonItem,
     IonContent,
     IonHeader,
@@ -106,28 +114,31 @@
     IonTitle,
     IonModal,
     IonToolbar,
+    IonCheckbox,
     IonRow,
     IonGrid,
     IonCol
   } from "@ionic/vue";
-  import {createOutline} from 'ionicons/icons';
-  import { defineComponent } from 'vue';
+  import {createOutline,checkmarkOutline,closeOutline} from 'ionicons/icons';
+  import { defineComponent, onUpdated } from 'vue';
   import { onMounted, ref } from "vue";
   import { useRoute } from "vue-router";
   import { useProjects } from "../composables/useProjects";
   import { useTasks } from "../composables/useTasks";
   import createProjecttask from "@/components/createProjecttask.vue";
+import { Project } from "../model/project";
   
-  const { specificProject, getSpecificProjectById, deleteProject } = useProjects();
+  const { specificProject, newProject, getSpecificProjectById, deleteProject, changeProject } = useProjects();
   const { tasks, getTasksByProject } = useTasks();
   const isOpen = ref(false);
+  const editMode = ref(false);
 
   const route = useRoute();
   
   const id = route.params.id;
 
-  function test() {
-    console.log("test")
+  function toggleEdit() {
+    editMode.value = !editMode.value;
   }
 
   function setOpen(open: boolean) {
@@ -152,5 +163,9 @@
       margin-left: 20px;
       height: 25px;
       width: 25px;;
+    }
+
+    .editMode{
+      display: none;
     }
   </style>

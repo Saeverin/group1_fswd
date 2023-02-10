@@ -53,11 +53,17 @@ public class ProjectController {
         projectRepository.save(project);
     }
 
-/*     public void updateProjectById(Long id){
-        Project project = projectRepository.getOne(id);
-        project.setDeadline(deadline); //warum deadline nicht resolvable?
-        project.setTitle(title); //dito
-    } */
+    public void updateProjectById(Project project, Long id){
+        Project oldProject = projectRepository.findById(id).get();
+
+        oldProject.setTitle(project.getTitle());
+
+        if(project.getDeadline() != null) {
+            oldProject.setDeadline(project.getDeadline());
+        }
+
+        projectRepository.save(oldProject);
+    }
 
 
 
@@ -65,11 +71,8 @@ public class ProjectController {
         return projectRepository.findAllButArchivedByOwner(loginName);
     } */
 
-    public static void updateProject(Project proJect, String name) {
-    }
-
-    public void addProject(Long projectId, ProjectTask projectTask, String name) {
-    }
+    /* public static void updateProject(Project proJect, String name) {
+    } */
     
 
 }
