@@ -48,5 +48,13 @@ public class ProjectEndpoint {
     public void addProject(@RequestBody Project project, Principal principal) {
         projectController.persistProject(project, principal.getName());
     }
+    
+/*     @RequestMapping(path = "/api/project/{id}", method = RequestMethod.PUT)
+    @PreAuthorize("isAuthenticated() AND hasRole('USER')")
+    public void updateProject(@PathVariable("id") Long id,@RequestBody Project project, Principal principal) {
+        projectController.updateProject(project, principal.getName())        
+    } */
+    
+
 }
 
