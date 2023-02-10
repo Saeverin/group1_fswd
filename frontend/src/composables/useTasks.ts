@@ -111,6 +111,7 @@ export function useTasks() {
         getTasks,
         getTasksByProject,
         finishSingleTask,
+        finishProjectTask,
         addProjectTask,
         addSingleTask,
         getSpecificTaskById
