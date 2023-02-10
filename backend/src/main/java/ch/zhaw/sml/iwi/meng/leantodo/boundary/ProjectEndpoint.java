@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,6 +29,12 @@ public class ProjectEndpoint {
     @PreAuthorize("isAuthenticated() AND hasRole('USER')")
     public List<Project> getProjects(Principal principal) {
         return projectController.listAllProjects(principal.getName());
+    }
+
+    @RequestMapping(path = "/api/project/{id}", method = RequestMethod.GET)
+    @PreAuthorize("isAuthenticated() AND hasRole('USER')")
+    public Project projectById(@PathVariable("id") Long id, Principal principal) {
+        return  projectController.getProjectById(id);        
     }
     
     @RequestMapping(path = "/api/project", method = RequestMethod.POST)

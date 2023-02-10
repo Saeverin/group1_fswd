@@ -16,18 +16,52 @@
           </ion-toolbar>
         </ion-header>
   
-        Project Details
+        <h1>Project Details</h1>
         <br />
         <ion-list>
           <ion-grid>
             <ion-row>
-              <ion-col> ID: {{ id }} </ion-col>
-              <ion-col> Titel: {{ title }} </ion-col>
-              <ion-col> Done? {{ done }} </ion-col>
-              <ion-col> Kategorie: {{ category }} </ion-col>
+              <ion-col> ID:</ion-col>
+              <ion-col> {{ specificProject?.id }} </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col> Titel:</ion-col>
+              <ion-col> {{ specificProject?.title }} </ion-col>
+            </ion-row>
+              <ion-row>
+                <ion-col> Done:  </ion-col>
+                <ion-col> {{ specificProject?.done }} </ion-col>
+              </ion-row>
+              <ion-row>
+              <ion-col> Deadline:</ion-col>
+              <ion-col> {{ specificProject?.deadline }} </ion-col>
             </ion-row>
           </ion-grid>
         </ion-list>
+
+        <h1>Project Tasks</h1>
+        <ion-list>
+        <ion-row>
+          <ion-col>Title</ion-col>
+          <ion-col>Category</ion-col>
+          <ion-col>Enddate</ion-col>
+        </ion-row>
+        <ion-item button :router-link="'/tabs/task/' + task.id" :key="task.id" v-for="task in tasks">
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                {{ task.title }}
+              </ion-col>
+              <ion-col>
+                {{ task.category }}
+              </ion-col>
+              <ion-col>
+                {{ task.endDate }}
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+      </ion-list>
       </ion-content>
     </ion-page>
   </template>
@@ -45,11 +79,23 @@
     IonTitle,
     IonToolbar,
   } from "@ionic/vue";
+  import { onMounted } from "vue";
   import { useRoute } from "vue-router";
+  import { useProjects } from "../composables/useProjects";
+  import { useTasks } from "../composables/useTasks";
   
+  const { specificProject, getSpecificProjectById } = useProjects();
+  const { tasks, getTasksByProject } = useTasks();
+
   const route = useRoute();
   
   const id = route.params.id;
+
+  onMounted( () => {
+    getSpecificProjectById(+id)
+    getTasksByProject(+id)
+  })
+
   </script>
     
     <style scoped>

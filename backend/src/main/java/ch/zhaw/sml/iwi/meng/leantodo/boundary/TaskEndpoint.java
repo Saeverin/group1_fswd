@@ -37,11 +37,11 @@ public class TaskEndpoint {
         return  taskController.getTaskById(id);        
     }
 
-    /* @RequestMapping(path = "/api/project/{id}/task", method = RequestMethod.GET)
+    @RequestMapping(path = "/api/project/{id}/task", method = RequestMethod.GET)
     @PreAuthorize("isAuthenticated() AND hasRole('USER')")
-    public List<ProjectTask> getProjectTasks(Principal principal) {
-        return  toDoController.listAllToDos(principal.getName());        
-    } */
+    public List<Task> getProjectTasks(@PathVariable("id") Long id, Principal principal) {
+        return  taskController.listAllTasksByProject(principal.getName(), id);        
+    }
 
     @RequestMapping(path = "/api/project/{id}", method = RequestMethod.POST)
     @PreAuthorize("isAuthenticated() AND hasRole('USER')")

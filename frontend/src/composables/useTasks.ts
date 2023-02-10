@@ -1,4 +1,4 @@
-import { getAllTasks, updateTask, addNewSingleTask, addNewProjectTask, getTaskById } from '@/api/tasks';
+import { getAllTasks, updateTask, addNewSingleTask, addNewProjectTask, getTaskById, getAllTasksByProject } from '@/api/tasks';
 import { Task } from '@/model/task';
 import { SingleTask } from '@/model/singleTask';
 import { ProjectTask } from '@/model/projectTask';
@@ -25,6 +25,13 @@ export function useTasks() {
         }
     }
 
+    const getTasksByProject = async (id: number) => {
+        try {
+            tasks.value = await getAllTasksByProject(id);
+        } catch (error) {
+            console.log(error); // FIXME: Errorhandling
+        }
+    }
 
     const getSpecificTaskById = async (id: number) => {
         try {
@@ -87,6 +94,7 @@ export function useTasks() {
         tasks,
         specificTask,
         getTasks,
+        getTasksByProject,
         finishTask,
         archiveTask,
         addProjectTask,
