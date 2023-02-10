@@ -30,7 +30,7 @@ public class Project {
 
     private LocalDateTime deadline;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProjectTask> projectTasks = new ArrayList<>();
     
 }
