@@ -16,7 +16,8 @@
           </ion-toolbar>
         </ion-header>
   
-        <h1>Project Details</h1>
+        <h1 class="project_details_title">Project Details</h1>
+        <ion-icon button @click="test()" class="project_details_edit" :icon="createOutline"></ion-icon>
         <br />
         <ion-list>
           <ion-grid>
@@ -26,7 +27,7 @@
             </ion-row>
             <ion-row>
               <ion-col> Titel:</ion-col>
-              <ion-col> {{ specificProject?.title }} </ion-col>
+              <ion-col> <ion-input v-bind="specificProject?.title"> {{ specificProject?.title }}</ion-input> </ion-col>
             </ion-row>
               <ion-row>
                 <ion-col> Done:  </ion-col>
@@ -96,6 +97,8 @@
     IonButtons,
     IonButton,
     IonList,
+    IonInput,
+    IonIcon,
     IonItem,
     IonContent,
     IonHeader,
@@ -107,6 +110,7 @@
     IonGrid,
     IonCol
   } from "@ionic/vue";
+  import {createOutline} from 'ionicons/icons';
   import { defineComponent } from 'vue';
   import { onMounted, ref } from "vue";
   import { useRoute } from "vue-router";
@@ -122,6 +126,10 @@
   
   const id = route.params.id;
 
+  function test() {
+    console.log("test")
+  }
+
   function setOpen(open: boolean) {
   //Öffnen/Schliessen + update Tasklist
   isOpen.value = open;
@@ -136,4 +144,13 @@
   </script>
     
     <style scoped>
+    .project_details_title{
+      display: inline-block;
+    }
+
+    .project_details_edit{
+      margin-left: 20px;
+      height: 25px;
+      width: 25px;;
+    }
   </style>
