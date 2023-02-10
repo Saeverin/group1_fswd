@@ -74,13 +74,17 @@ import {
   IonModal,
   IonButtons
 } from "@ionic/vue";
-import { defineComponent } from 'vue';
+import { defineComponent, onMounted, onUpdated } from 'vue';
 import { ref } from "vue";
 import { useProjects } from "../composables/useProjects";
 import createProject from "@/components/createProject.vue";
 
 const { newProject, projects, getProjects, addProject, finishProject, archiveProject } = useProjects();
 const isOpen = ref(false);
+
+onMounted(() => getProjects())
+
+onUpdated(() => getProjects())
 
 function setOpen(open: boolean) {
   //Öffnen/Schliessen + update Tasklist
