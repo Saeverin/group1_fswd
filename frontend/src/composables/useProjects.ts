@@ -1,8 +1,10 @@
-import { getAllProJects, updateProJect, addNewProJect } from '@/api/projects';
+import { getAllProJects, updateProJect, addNewProJect, getProjectById } from '@/api/projects';
 import  { Project } from '../model/project';
 import { onMounted, ref } from 'vue';
 
 export function useProjects() {
+
+    const specificProject = ref<Project>();
 
     const projects = ref<Project[]>([]);
 
@@ -11,6 +13,14 @@ export function useProjects() {
     const getProjects = async () => {
         try {
             projects.value = await getAllProJects();
+        } catch (error) {
+            console.log(error); // FIXME: Errorhandling
+        }
+    }
+
+    const getSpecificProjectById = async (id: number) => {
+        try {
+            specificProject.value = await getProjectById(id);
         } catch (error) {
             console.log(error); // FIXME: Errorhandling
         }
@@ -50,7 +60,9 @@ export function useProjects() {
     return {
         newProject,
         projects,
+        specificProject,
         getProjects,
+        getSpecificProjectById,
         addProject,
         finishProject,
         archiveProject

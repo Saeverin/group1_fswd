@@ -14,6 +14,18 @@ export async function getAllProJects(): Promise<Project[]>   {
     }
 }
 
+export async function getProjectById(pathId: number): Promise<Project>   { 
+    const config = {        
+        withCredentials: true
+    }
+    try {
+        const response = await axios.get(API_ROOT + '/api/project/'+pathId, config);
+        return response.data;
+    } catch (error) {
+        return <any>error;   
+    }
+}
+
 export async function addNewProJect(newProject: Project): Promise<any>   {
     newProject.deadline = newProject.deadline?.substring(0,19)
 

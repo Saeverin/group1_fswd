@@ -67,8 +67,8 @@
                 </ion-item>
               </ion-radio-group>
             </ion-list>
-            <create-projecttask v-if="projectTask"></create-projecttask>
-            <create-singletask v-if="projectTask == false"></create-singletask>
+            <create-projecttask @some-event="setOpen(false); getTasks();" v-if="projectTask"></create-projecttask>
+            <create-singletask @some-event="setOpen(false); getTasks();" v-if="projectTask == false" ></create-singletask>
           </ion-content>
         </ion-modal>
       </div>

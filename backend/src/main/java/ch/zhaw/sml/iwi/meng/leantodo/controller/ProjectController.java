@@ -22,6 +22,10 @@ public class ProjectController {
         return projectRepository.findByOwner(loginName);
     }
 
+    public Project getProjectById(Long id) {
+        return projectRepository.findById(id).get();
+    }
+
     public void persistProject(Project newProject, String owner) {
         newProject.setId(null);
         // We only create empty projects

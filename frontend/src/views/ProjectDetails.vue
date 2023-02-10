@@ -16,18 +16,74 @@
           </ion-toolbar>
         </ion-header>
   
-        Project Details
+        <h1>Project Details</h1>
         <br />
         <ion-list>
           <ion-grid>
             <ion-row>
-              <ion-col> ID: {{ id }} </ion-col>
-              <ion-col> Titel: {{ title }} </ion-col>
-              <ion-col> Done? {{ done }} </ion-col>
-              <ion-col> Kategorie: {{ category }} </ion-col>
+              <ion-col> ID:</ion-col>
+              <ion-col> {{ specificProject?.id }} </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col> Titel:</ion-col>
+              <ion-col> {{ specificProject?.title }} </ion-col>
+            </ion-row>
+              <ion-row>
+                <ion-col> Done:  </ion-col>
+                <ion-col> {{ specificProject?.done }} </ion-col>
+              </ion-row>
+              <ion-row>
+              <ion-col> Deadline:</ion-col>
+              <ion-col> {{ specificProject?.deadline }} </ion-col>
             </ion-row>
           </ion-grid>
         </ion-list>
+
+        <h1>Project Tasks</h1>
+        <ion-list>
+        <ion-row>
+          <ion-col>Title</ion-col>
+          <ion-col>Category</ion-col>
+          <ion-col>Enddate</ion-col>
+        </ion-row>
+        <ion-item button :router-link="'/tabs/task/' + task.id" :key="task.id" v-for="task in tasks">
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                {{ task.title }}
+              </ion-col>
+              <ion-col>
+                {{ task.category }}
+              </ion-col>
+              <ion-col>
+                {{ task.endDate }}
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+      </ion-list>
+
+      <div>
+        <ion-button @click="setOpen(true)">Create Project Task</ion-button>
+        <ion-modal :is-open="isOpen" @ionModalDidDismiss="
+          () => {
+            isOpen = false;
+          }
+        ">
+          <ion-header>
+            <ion-toolbar>
+              <ion-title>Create new Project Task</ion-title>
+              <ion-buttons slot="end">
+                <ion-button @click="setOpen(false)">Close</ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+          </ion-header>
+          <ion-content>
+            <create-projecttask @some-event="setOpen(false); getTasksByProject(+id);"></create-projecttask>
+          </ion-content>
+        </ion-modal>
+      </div>
+
       </ion-content>
     </ion-page>
   </template>
@@ -43,19 +99,34 @@
     IonHeader,
     IonPage,
     IonTitle,
+    IonModal,
     IonToolbar,
   } from "@ionic/vue";
+  import { onMounted, ref } from "vue";
   import { useRoute } from "vue-router";
+  import { useProjects } from "../composables/useProjects";
+  import { useTasks } from "../composables/useTasks";
+  import createProjecttask from "@/components/createProjecttask.vue";
   
+  const { specificProject, getSpecificProjectById } = useProjects();
+  const { tasks, getTasksByProject } = useTasks();
+  const isOpen = ref(false);
+
   const route = useRoute();
   
   const id = route.params.id;
-  const title = route.params.title;
-  const done = route.params.done;
-  const category = route.params.category;
-  const text = route.params.text;
-  const startDate = route.params.startDate;
-  const endDate = route.params.endDate;
+
+  function setOpen(open: boolean) {
+  //Öffnen/Schliessen + update Tasklist
+  isOpen.value = open;
+  getTasksByProject(+id);
+}
+
+  onMounted( () => {
+    getSpecificProjectById(+id)
+    getTasksByProject(+id)
+  })
+
   </script>
     
     <style scoped>
