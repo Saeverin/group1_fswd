@@ -57,6 +57,12 @@ import { useTasks } from "../composables/useTasks";
 
 const { newSingleTask, addSingleTask } = useTasks();
 </script>
+<script lang="ts">
+  
+export default {
+  emits: ['someEvent']
+}
+</script>
   
 <style scoped>
 </style>

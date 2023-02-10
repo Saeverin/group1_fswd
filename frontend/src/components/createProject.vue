@@ -33,9 +33,17 @@
   } from "@ionic/vue";
   import { defineComponent } from 'vue';
   import { useProjects } from "../composables/useProjects";
-  
+
   const { newProject, addProject } = useProjects();
+
   </script>
+  <script lang="ts">
+  
+  export default {
+    emits: ['someEvent']
+  }
+  </script>
+  
     
   <style scoped>
   </style>

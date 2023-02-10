@@ -71,6 +71,12 @@ function errorHandling(){
   addProjectTask();
 }
 </script>
+<script lang="ts">
+  
+export default {
+  emits: ['someEvent']
+}
+</script>
   
 <style scoped>
 </style>
