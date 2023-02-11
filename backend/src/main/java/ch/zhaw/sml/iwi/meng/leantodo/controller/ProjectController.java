@@ -21,11 +21,11 @@ public class ProjectController {
     private TaskRepository taskRepository;
 
     public List<Project> listAllProjects(String loginName) {
-        return projectRepository.findAllButArchivedByOwner(loginName);
+        return projectRepository.findAllButArchived(loginName);
     }
 
     public List<Project> listAllArchivedProjects(String loginName) {
-        return projectRepository.findAllArchivedByOwner(loginName);
+        return projectRepository.findAllArchived(loginName);
     }
 
     public Project getProjectById(Long id) {

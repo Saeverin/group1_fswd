@@ -50,7 +50,7 @@
         <ion-list>
         <ion-row>
           <ion-col>Title</ion-col>
-          <ion-col>Category</ion-col>
+          <ion-col>Assignee</ion-col>
           <ion-col>Enddate</ion-col>
         </ion-row>
         <ion-item button :router-link="'/tabs/task/' + task.id" :key="task.id" v-for="task in tasks">
@@ -60,7 +60,7 @@
                 {{ task.title }}
               </ion-col>
               <ion-col>
-                {{ task.category }}
+                {{ task.owner }}
               </ion-col>
               <ion-col>
                 {{ task.endDate }}

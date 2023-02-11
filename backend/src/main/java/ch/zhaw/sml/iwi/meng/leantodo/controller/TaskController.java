@@ -33,7 +33,7 @@ public class TaskController {
 
     public List<Task> listAllTasksByProject(String loginName, Long id) {
         Project project = projectRepository.findById(id).get(); 
-        return taskRepository.findAllProjecttasksByProject(loginName, project);
+        return taskRepository.findAllProjecttasksByProject(project);
     }
 
     public Task getTaskById(Long id) {

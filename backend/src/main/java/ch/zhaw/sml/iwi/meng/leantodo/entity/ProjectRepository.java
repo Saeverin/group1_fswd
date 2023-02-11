@@ -9,9 +9,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProjectRepository extends JpaRepository<Project, Long>
 {
-    @Query("SELECT p FROM Project as p WHERE p.owner = ?1 AND p.archived = false")
-    public List<Project> findAllButArchivedByOwner(String owner);
+    @Query("SELECT p FROM Project as p WHERE p.archived = false")
+    public List<Project> findAllButArchived(String owner);
 
-    @Query("SELECT p FROM Project as p WHERE p.owner = ?1 AND p.archived = true")
-    public List<Project> findAllArchivedByOwner(String owner);
+    @Query("SELECT p FROM Project as p WHERE p.archived = true")
+    public List<Project> findAllArchived(String owner);
 }
