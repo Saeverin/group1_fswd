@@ -1,5 +1,5 @@
 <template>
-  <ion-page :key="componentKey">
+  <ion-page v-if="renderComponent">
     <ion-header>
       <ion-toolbar>
         <ion-title>Tasks</ion-title>
@@ -97,23 +97,35 @@ import {
   IonInput,
 } from "@ionic/vue";
 import { useTasks } from "../composables/useTasks";
-import { defineComponent, onMounted, onBeforeUpdate, onUpdated, watchEffect } from 'vue';
+import { defineComponent, onMounted, onBeforeUpdate, onUpdated, watchEffect, nextTick } from 'vue';
 import { ref } from "vue";
 import createProjecttask from "../components/createProjecttask.vue";
 import createSingletask from "../components/createSingletask.vue";
 
+const { newTask, tasks, getTasks } =  useTasks();
+
+const renderComponent = ref(true);
+
 watchEffect(() => {
   useTasks;
+  tasks;
 });
 
+
+async function forceRerender() {
+        // Removing my-component from the DOM
+        renderComponent.value = false;
+
+        await nextTick(() => {
+          // Adding the component back in
+          renderComponent.value = true;
+          setOpen(false);
+        });
+}
 
 const isOpen = ref(false);
 const projectTask = ref<any>(null);
 const componentKey = ref(0);
-
-const forceRerender = () => {
-  componentKey.value += 1;
-};
 
 onMounted(() => {
   getTasks();
@@ -122,8 +134,11 @@ onMounted(() => {
 onUpdated(() => getTasks())
 
 function someEventListener() {
-  setOpen(false); 
+  
   getTasks();
+  componentKey.value += 1;
+  setOpen(false); 
+  
 }
 
 function setProjectFalse() {
@@ -138,11 +153,13 @@ function setOpen(open: boolean) {
   //Öffnen/Schliessen + update Tasklist
   isOpen.value = open;
   getTasks();
-}
+  if(!open) {
+    window.location.reload();
+  }
+ }
 
 
-const { newTask, tasks, getTasks } =
-  useTasks();
+
 </script>
 
 <style scoped>

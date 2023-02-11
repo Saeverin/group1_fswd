@@ -93,6 +93,10 @@ function setOpen(open: boolean) {
   //Öffnen/Schliessen + update Tasklist
   isOpen.value = open;
   getProjects();
+
+  if(!open) {
+    window.location.reload();
+  }
 }
 
 </script>
