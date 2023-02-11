@@ -27,6 +27,10 @@ public class TaskController {
         return taskRepository.findAllButArchivedByOwner(loginName);
     }
 
+    public List<Task> listAllArchivedTasks(String loginName) {
+        return taskRepository.findAllArchivedByOwner(loginName);
+    }
+
     public List<Task> listAllTasksByProject(String loginName, Long id) {
         Project project = projectRepository.findById(id).get(); 
         return taskRepository.findAllProjecttasksByProject(loginName, project);

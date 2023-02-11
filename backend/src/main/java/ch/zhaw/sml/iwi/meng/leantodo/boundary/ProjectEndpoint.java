@@ -31,6 +31,12 @@ public class ProjectEndpoint {
         return projectController.listAllProjects(principal.getName());
     }
 
+    @RequestMapping(path = "/api/archive/project", method = RequestMethod.GET)
+    @PreAuthorize("isAuthenticated() AND hasRole('USER')")
+    public List<Project> getArchivedProjects(Principal principal) {
+        return projectController.listAllArchivedProjects(principal.getName());
+    }
+
     @RequestMapping(path = "/api/project/{id}", method = RequestMethod.GET)
     @PreAuthorize("isAuthenticated() AND hasRole('USER')")
     public Project projectById(@PathVariable("id") Long id, Principal principal) {

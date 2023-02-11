@@ -21,7 +21,11 @@ public class ProjectController {
     private TaskRepository taskRepository;
 
     public List<Project> listAllProjects(String loginName) {
-        return projectRepository.findByOwner(loginName);
+        return projectRepository.findAllButArchivedByOwner(loginName);
+    }
+
+    public List<Project> listAllArchivedProjects(String loginName) {
+        return projectRepository.findAllArchivedByOwner(loginName);
     }
 
     public Project getProjectById(Long id) {

@@ -1,4 +1,4 @@
-import { getAllProJects, updateProJect, addNewProJect, getProjectById, deleteProjectById, changeProjectById } from '@/api/projects';
+import { getAllProJects, updateProJect, addNewProJect, getProjectById, deleteProjectById, changeProjectById, getAllArchivedProjects } from '@/api/projects';
 import {getAllProjectsFail, getProjectByIdFail, deleteProjectByIdSuccess, deleteProjectByIdFail, changeProjectByIdSuccess, changeProjectByIdFail, addNewProjectSuccess, addNewProjectFail, updateProjectSuccess, updateProjectFail} from '@/composables/useToast';
 import  { Project } from '../model/project';
 import { onMounted, ref } from 'vue';
@@ -9,11 +9,22 @@ export function useProjects() {
 
     const projects = ref<Project[]>([]);
 
+    const archivedProjects = ref<Project[]>([]);
+
     const newProject = ref<Project>({});
 
     const getProjects = async () => {
         try {
             projects.value = await getAllProJects();
+        } catch (error) {
+            getAllProjectsFail();
+            console.log(error);
+        }
+    }
+
+    const getArchivedProjects = async () => {
+        try {
+            archivedProjects.value = await getAllArchivedProjects();
         } catch (error) {
             getAllProjectsFail();
             console.log(error);
@@ -89,8 +100,10 @@ export function useProjects() {
     return {
         newProject,
         projects,
+        archivedProjects,
         specificProject,
         getProjects,
+        getArchivedProjects,
         getSpecificProjectById,
         deleteProject,
         addProject,

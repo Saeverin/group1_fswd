@@ -15,6 +15,9 @@ public interface TaskRepository extends JpaRepository<Task,Long> {
     @Query("SELECT t FROM Task as t WHERE t.owner = ?1 AND t.archived = false")
     public List<Task> findAllButArchivedByOwner(String owner);
 
+    @Query("SELECT t FROM Task as t WHERE t.owner = ?1 AND t.archived = true")
+    public List<Task> findAllArchivedByOwner(String owner);
+
     @Query("SELECT t FROM Task as t WHERE t.owner = ?1 AND t.project = ?2")
     public List<Task> findAllProjecttasksByProject(String owner, Project project);
 
