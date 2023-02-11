@@ -4,6 +4,8 @@ import { SingleTask } from '@/model/singleTask';
 import { ProjectTask } from '@/model/projectTask';
 import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
+import { getAllTasksFail, getAllTasksByProjectFail, getTaskByIdFail, addNewSingleTaskSuccess, addNewSingleTaskFail, addNewProjectTaskSuccess, addNewProjectTaskFail, updateTaskFail, updateSingleTaskSuccess, updateSingleTaskFail, updateProjectTaskSuccess, updateProjectTaskFail, deleteTaskByIdSuccess, deleteTaskByIdFail, archiveSingleTaskSuccess, archiveSingleTaskFail, archiveProjectTaskSuccess, archiveProjectTaskFail } from '@/composables/useToast';
+
 
 export function useTasks() {
     
@@ -21,7 +23,8 @@ export function useTasks() {
         try {
             tasks.value = await getAllTasks();
         } catch (error) {
-            console.log(error); // FIXME: Errorhandling
+            getAllTasksFail();
+            console.log(error);
         }
     }
 
@@ -29,7 +32,8 @@ export function useTasks() {
         try {
             tasks.value = await getAllTasksByProject(id);
         } catch (error) {
-            console.log(error); // FIXME: Errorhandling
+            getAllTasksByProjectFail();
+            console.log(error);
         }
     }
 
@@ -37,7 +41,8 @@ export function useTasks() {
         try {
             specificTask.value = await getTaskById(id);
         } catch (error) {
-            console.log(error); // FIXME: Errorhandling
+            getTaskByIdFail();
+            console.log(error);
         }
     }
 
@@ -47,9 +52,11 @@ export function useTasks() {
             newSingleTask.value.done = true;
             newSingleTask.value.type = "SingleTask";
             updateSingleTask(newSingleTask.value, id);
+            updateSingleTaskSuccess();
         } catch (error) {
+            updateSingleTaskFail();
+            console.log(error);
             return(error);
-            console.log(error); // FIXME: Errorhandling
         }
     }
 
@@ -58,9 +65,11 @@ export function useTasks() {
             newProjectTask.value.done = true;
             newProjectTask.value.type = "ProjectTask";
             updateProjectTask(newProjectTask.value, id);
+            updateProjectTaskSuccess();
         } catch (error) {
+            updateProjectTaskFail();
+            console.log(error);
             return(error);
-            console.log(error); // FIXME: Errorhandling
         }
     }
 
@@ -68,9 +77,11 @@ export function useTasks() {
         try {
             newSingleTask.value.done = true;
             updateSingleTask(newSingleTask.value, id);
+            archiveSingleTaskSuccess();
         } catch (error) {
+            archiveSingleTaskFail();
+            console.log(error);
             return(error);
-            console.log(error); // FIXME: Errorhandling
         }
     }
 
@@ -78,35 +89,24 @@ export function useTasks() {
         try {
             newProjectTask.value.archived = true;
             await updateProjectTask(newProjectTask.value, id);
+            archiveProjectTaskSuccess();
         } catch (error) {
+            archiveProjectTaskFail();
+            console.log(error);
             return(error);
-            console.log(error); // FIXME: Errorhandling
         }
-    }
-
-   
-    /* const archiveTask = async (id: number) => {
-        try {
-            newTask.value.archived = true;
-            await updateTask(newTask.value, id);
-            getTasks();
-        } catch (error) {
-            return(error);
-            console.log(error); // FIXME: Errorhandling
-        }
-    }  */
-
-   
-    
+    }    
 
     const addSingleTask = async () => {
         try {
             // add the new todo and update the list of all todos afterwards
             await addNewSingleTask(newSingleTask.value);
+            addNewSingleTaskSuccess();
             getTasks();
         } catch (error) {
-            return(error);
-            console.log(error); // FIXME: Errorhandling
+            addNewSingleTaskFail();
+            console.log(error);
+            return(error);         
         }
     }
 
@@ -114,10 +114,12 @@ export function useTasks() {
         try {
             // add the new todo and update the list of all todos afterwards
             await addNewProjectTask(newProjectTask.value);
+            addNewProjectTaskSuccess();
             getTasks();
         } catch (error) {
+            addNewProjectTaskFail();
+            console.log(error);
             return(error);
-            console.log(error); // FIXME: Errorhandling
         }
     }
 
@@ -130,24 +132,29 @@ export function useTasks() {
                 newSingleTask.value.category = newTask.value.category;
                 newSingleTask.value.text = newTask.value.text;
                 changeSingleTask(newSingleTask.value, id);
+                updateSingleTaskSuccess();
             } else {
                 newProjectTask.value.type =  newTask.value.type;
                 newProjectTask.value.title =  newTask.value.title;
                 newProjectTask.value.category =  newTask.value.category;
                 newProjectTask.value.text =  newTask.value.text;
                 changeProjectTask(newProjectTask.value, id);
+                updateProjectTaskSuccess();
             }
         } catch (error) {
+            updateTaskFail();
+            console.log(error);
             return(error);
-            console.log(error); // FIXME: Errorhandling
         }
     }
 
     const deleteTask = async (id:number) => {
         try{
             await deleteTaskById(id);
+            deleteTaskByIdSuccess();
         } catch (error) {
-            console.log(error); // FIXME: Errorhandling
+            deleteTaskByIdFail();
+            console.log(error);
         }
     }
 

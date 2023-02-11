@@ -101,7 +101,6 @@ import { defineComponent, onMounted, onBeforeUpdate, onUpdated } from 'vue';
 import { ref } from "vue";
 import createProjecttask from "@/components/createProjecttask.vue";
 import createSingletask from "@/components/createSingletask.vue";
-/* import modalCreateProjecttask from '../components/modalCreateProjecttask.vue'; */
 
 const isOpen = ref(false);
 const projectTask = ref<any>(null);

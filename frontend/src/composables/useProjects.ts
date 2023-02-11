@@ -1,4 +1,5 @@
 import { getAllProJects, updateProJect, addNewProJect, getProjectById, deleteProjectById, changeProjectById } from '@/api/projects';
+import {getAllProjectsFail, getProjectByIdFail, deleteProjectByIdSuccess, deleteProjectByIdFail, changeProjectByIdSuccess, changeProjectByIdFail, addNewProjectSuccess, addNewProjectFail, updateProjectSuccess, updateProjectFail} from '@/composables/useToast';
 import  { Project } from '../model/project';
 import { onMounted, ref } from 'vue';
 
@@ -14,7 +15,8 @@ export function useProjects() {
         try {
             projects.value = await getAllProJects();
         } catch (error) {
-            console.log(error); // FIXME: Errorhandling
+            getAllProjectsFail();
+            console.log(error);
         }
     }
 
@@ -22,24 +24,28 @@ export function useProjects() {
         try {
             specificProject.value = await getProjectById(id);
         } catch (error) {
-            console.log(error); // FIXME: Errorhandling
+            getProjectByIdFail();
+            console.log(error);
         }
     }
 
     const deleteProject = async (id:number) => {
         try {
             await deleteProjectById(id);
+            deleteProjectByIdSuccess();
         } catch (error) {
-            console.log(error); // FIXME: Errorhandling
+            deleteProjectByIdFail();
+            console.log(error);
         }
     }
 
     const changeProject = async (id:number) => {
         try {
-            console.log("hallo")
             await changeProjectById(newProject.value, id);
+            changeProjectByIdSuccess();
         } catch (error) {
-            console.log(error); // FIXME: Errorhandling
+            changeProjectByIdFail();
+            console.log(error);
         }
     }
 
@@ -47,8 +53,10 @@ export function useProjects() {
         try {
             project.done = true;
             updateProJect(project);
+            updateProjectSuccess();
         } catch (error) {
-            console.log(error); // FIXME: Errorhandling
+            updateProjectFail();
+            console.log(error);
         }
     }
 
@@ -56,9 +64,11 @@ export function useProjects() {
         try {
             project.archived = true;
             await updateProJect(project);
+            updateProjectSuccess();
             getProjects();
         } catch (error) {
-            console.log(error); // FIXME: Errorhandling
+            updateProjectFail();
+            console.log(error);
         }
     }
 
@@ -66,9 +76,11 @@ export function useProjects() {
         try {
             // add the new todo and update the list of all todos afterwards
             await addNewProJect(newProject.value);
+            addNewProjectSuccess();
             getProjects();
         } catch (error) {
-            console.log(error); // FIXME: Errorhandling
+            addNewProjectFail();
+            console.log(error);
         }
     }
 

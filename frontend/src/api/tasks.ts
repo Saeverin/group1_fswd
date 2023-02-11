@@ -4,7 +4,7 @@ import { Task } from "@/model/task";
 import { ProjectTask } from '@/model/projectTask';
 import { SingleTask } from '@/model/singleTask';
 import { toastController } from '@ionic/vue';
-import { getAllTasksFail, getAllTasksByProjectFail, getTaskByIdFail, addNewSingleTaskSuccess, addNewSingleTaskFail, addNewProjectTaskSuccess, addNewProjectTaskFail, updateSingleTaskSuccess, updateSingleTaskFail, updateProjectTaskSuccess, updateProjectTaskFail, archiveSingleTaskSuccess, archiveSingleTaskFail, archiveProjectTaskSuccess, archiveProjectTaskFail } from '@/composables/useToast';
+import { getAllTasksFail, getAllTasksByProjectFail, getTaskByIdFail, addNewSingleTaskSuccess, addNewSingleTaskFail, addNewProjectTaskSuccess, addNewProjectTaskFail, updateSingleTaskSuccess, updateSingleTaskFail, updateProjectTaskSuccess, updateProjectTaskFail, deleteTaskByIdSuccess, deleteTaskByIdFail, archiveSingleTaskSuccess, archiveSingleTaskFail, archiveProjectTaskSuccess, archiveProjectTaskFail } from '@/composables/useToast';
 
 export async function getAllTasks(): Promise<Task[]> {
     const config = {
@@ -51,7 +51,9 @@ export async function deleteTaskById(pathId: number): Promise<any>   {
     }
     try {
         const response = await axios.delete(API_ROOT + '/api/task/'+pathId, config);
+        deleteTaskByIdSuccess();
     } catch (error) {
+        deleteTaskByIdFail();
         return <any>error;   
     }
 }
