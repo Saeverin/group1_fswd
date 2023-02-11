@@ -88,7 +88,8 @@ export function useTasks() {
         try {
             newSingleTask.value.done = true;
             updateSingleTask(newSingleTask.value, id);
-            archiveSingleTaskSuccess();
+            updateSingleTaskSuccess();
+            getTasks();
         } catch (error) {
             archiveSingleTaskFail();
             console.log(error);
@@ -100,13 +101,16 @@ export function useTasks() {
         try {
             newProjectTask.value.archived = true;
             await updateProjectTask(newProjectTask.value, id);
-            archiveProjectTaskSuccess();
+            updateProjectTaskSuccess();
+            getTasks();
         } catch (error) {
             archiveProjectTaskFail();
             console.log(error);
             return(error);
         }
     }    
+
+   
 
     const addSingleTask = async () => {
         try {
