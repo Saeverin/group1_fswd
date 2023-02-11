@@ -71,10 +71,10 @@ export function useProjects() {
         }
     }
 
-    const archiveProject = async (project: Project) => {
+    const archiveProject = async (id:number) => {
         try {
-            project.archived = true;
-            await updateProJect(project);
+            newProject.value.archived = true;
+            await changeProjectById(newProject.value, id);
             updateProjectSuccess();
             getProjects();
         } catch (error) {

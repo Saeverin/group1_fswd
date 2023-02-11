@@ -91,6 +91,8 @@
         </ion-modal>
       </div>
 
+      <ion-button @click="archiveProject(+id)" :router-link="'/tabs/projects'" color="warning">Archive Project</ion-button>
+      <br>
       <ion-button @click="deleteProject(+id)" :router-link="'/tabs/projects'" color="danger">Delete Project</ion-button>
 
       </ion-content>
@@ -128,7 +130,7 @@
   import createProjecttask from "@/components/createProjecttask.vue";
 import { Project } from "../model/project";
   
-  const { specificProject, newProject, getSpecificProjectById, deleteProject, changeProject } = useProjects();
+  const { specificProject, newProject, getSpecificProjectById, deleteProject, changeProject, archiveProject } = useProjects();
   const { tasks, getTasksByProject } = useTasks();
   const isOpen = ref(false);
   const editMode = ref(false);

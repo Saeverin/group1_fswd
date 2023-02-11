@@ -60,10 +60,16 @@ public class ProjectController {
     public void updateProjectById(Project project, Long id){
         Project oldProject = projectRepository.findById(id).get();
 
-        oldProject.setTitle(project.getTitle());
-
+        if(project.getTitle() != null) {
+            oldProject.setTitle(project.getTitle());
+        }
+        
         if(project.getDeadline() != null) {
             oldProject.setDeadline(project.getDeadline());
+        }
+
+        if(project.getArchived() != null && project.getArchived()) {
+            oldProject.setArchived(project.getArchived());
         }
 
         projectRepository.save(oldProject);

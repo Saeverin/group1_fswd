@@ -20,7 +20,7 @@
                 {{ task.title }}
               </ion-col>
               <ion-col>
-                TEST
+                Finished: {{ task.done }}
               </ion-col>
             </ion-row>
           </ion-grid>
@@ -35,7 +35,7 @@
                 {{ project.title }}
               </ion-col>
               <ion-col>
-                TEST
+                Finished: {{ project.done }}
               </ion-col>
             </ion-row>
           </ion-grid>
