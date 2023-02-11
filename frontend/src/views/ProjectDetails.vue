@@ -33,7 +33,7 @@
             </ion-row>
               <ion-row>
                 <ion-col> Done:  </ion-col>
-                <ion-col> <ion-item><ion-checkbox :value="(specificProject?.done)" :disabled="true"></ion-checkbox></ion-item> </ion-col>
+                <ion-col> <ion-item><ion-checkbox :value="specificProject?.done" :checked="specificProject?.done" :aria-checked="specificProject?.done"  :disabled="true"></ion-checkbox></ion-item></ion-col>
               </ion-row>
               <ion-row>
               <ion-col> Deadline:</ion-col>

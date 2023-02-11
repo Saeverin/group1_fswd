@@ -67,8 +67,8 @@
                 </ion-item>
               </ion-radio-group>
             </ion-list>
-            <create-projecttask @some-event="setOpen(false); getTasks();" v-if="projectTask"></create-projecttask>
-            <create-singletask @some-event="setOpen(false); getTasks();" v-if="projectTask == false" ></create-singletask>
+            <create-projecttask @some-event="someEventListener" v-if="projectTask"></create-projecttask>
+            <create-singletask @some-event="someEventListener" v-if="projectTask == false" ></create-singletask>
           </ion-content>
         </ion-modal>
       </div>
@@ -120,6 +120,11 @@ onMounted(() => {
 });
 
 onUpdated(() => getTasks())
+
+function someEventListener() {
+  setOpen(false); 
+  getTasks();
+}
 
 function setProjectFalse() {
   projectTask.value = false;
