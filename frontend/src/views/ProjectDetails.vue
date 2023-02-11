@@ -119,7 +119,7 @@
     IonCheckbox,
     IonRow,
     IonGrid,
-    IonCol
+    IonCol,
   } from "@ionic/vue";
   import {createOutline,checkmarkOutline,closeOutline} from 'ionicons/icons';
   import { defineComponent, onUpdated } from 'vue';
@@ -128,7 +128,7 @@
   import { useProjects } from "../composables/useProjects";
   import { useTasks } from "../composables/useTasks";
   import createProjecttask from "@/components/createProjecttask.vue";
-import { Project } from "../model/project";
+  import { Project } from "../model/project";
   
   const { specificProject, newProject, getSpecificProjectById, deleteProject, changeProject, archiveProject } = useProjects();
   const { tasks, getTasksByProject } = useTasks();
@@ -136,6 +136,7 @@ import { Project } from "../model/project";
   const editMode = ref(false);
 
   const route = useRoute();
+
   
   const id = route.params.id;
 

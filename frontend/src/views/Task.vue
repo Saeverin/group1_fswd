@@ -21,7 +21,7 @@
         
           
             <ion-row  button :router-link="'/tabs/task/' + task.id" :key="task.id" v-for="task in tasks">
-              <ion-col class="col-content">
+              <ion-col :v-bind="task.title" class="col-content">
                 {{ task.title }}
               </ion-col>
               <ion-col class="col-content">
