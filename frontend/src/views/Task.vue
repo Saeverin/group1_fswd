@@ -11,7 +11,7 @@
           <ion-title size="large">Tasks</ion-title>
         </ion-toolbar>
       </ion-header>
-      <ion-list>
+      <ion-list class="wrapper">
         <ion-row>
           <ion-col class="col-header">Title</ion-col>
           <ion-col class="col-header">Category</ion-col>
@@ -163,21 +163,4 @@ function setOpen(open: boolean) {
 </script>
 
 <style scoped>
-ion-col {
-  background-color: #71a4f1;
-  border: solid 1px #fff;
-  color: #fff;
-  text-align: left;
-}
-
-.col-header
-{
-  font-weight: bold;
-  color: black;
-}
-
-.col-content
-{
-  color: black;
-}
 </style>

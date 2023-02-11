@@ -11,7 +11,7 @@
           <ion-title size="large">Projects</ion-title>
         </ion-toolbar>
       </ion-header>
-      <ion-list>
+      <ion-list class=wrapper>
         <ion-item button :router-link="'/tabs/project/' + project.id" :key="project.id" v-for="project in projects">
           <ion-grid>
             <ion-row>

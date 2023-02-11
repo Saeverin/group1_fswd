@@ -160,12 +160,6 @@ const id = route.params.id;
 </script>
   
 <style scoped>
-ion-col {
-  background-color: #71a4f1;
-  border: solid 1px #fff;
-  color: #fff;
-  text-align: left;
-}
 .task_details_title {
   display: inline-block;
 }
