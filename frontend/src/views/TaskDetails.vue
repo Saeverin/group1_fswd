@@ -52,7 +52,7 @@
             <ion-col> {{ specificTask?.project?.title }} </ion-col>
           </ion-row>
           <ion-row>
-            <ion-col>Status:</ion-col>
+            <ion-col>Action:</ion-col>
             <ion-col>
                 <ion-button color="danger" v-if="!specificTask?.done"
                   @click="finishTask()">Finish</ion-button>
@@ -62,6 +62,7 @@
           </ion-row>
         </ion-grid>
         </ion-item>
+        <ion-button @click="deleteTask(+id)" :router-link="'/tabs/task'" color="danger">Delete Task</ion-button>
     </ion-content>
   </ion-page>
 </template>
@@ -94,7 +95,7 @@ import { useRoute } from "vue-router";
 import { useTasks } from "../composables/useTasks";
 import { ref } from "vue";
 
-const { newTask, tasks, specificTask, getTasks, finishSingleTask, finishProjectTask, archiveSingleTask, archiveProjectTask, getSpecificTaskById, changeTask } =
+const { newTask, tasks, specificTask, getTasks, finishSingleTask, finishProjectTask, archiveSingleTask, archiveProjectTask, getSpecificTaskById, changeTask, deleteTask } =
   useTasks();
 
   const route = useRoute();

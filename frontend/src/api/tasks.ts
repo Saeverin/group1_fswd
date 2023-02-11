@@ -45,6 +45,17 @@ export async function getTaskById(pathId: number): Promise<Task> {
     }
 }
 
+export async function deleteTaskById(pathId: number): Promise<any>   { 
+    const config = {        
+        withCredentials: true
+    }
+    try {
+        const response = await axios.delete(API_ROOT + '/api/task/'+pathId, config);
+    } catch (error) {
+        return <any>error;   
+    }
+}
+
 export async function addNewSingleTask(newTask: SingleTask): Promise<any> {
     newTask.type = 'SingleTask'
     newTask.endDate = newTask.endDate?.substring(0, 19)

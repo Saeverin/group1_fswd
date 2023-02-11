@@ -79,5 +79,9 @@ public class TaskController {
 
         taskRepository.save(orig);
     }
+
+    public void deleteTaskById(Long id) {
+        taskRepository.deleteById(id);
+    }
     
 }

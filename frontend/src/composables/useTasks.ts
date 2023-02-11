@@ -1,4 +1,4 @@
-import { getAllTasks, addNewSingleTask, addNewProjectTask, getTaskById, getAllTasksByProject, updateSingleTask, updateProjectTask, archiveSingleTask, archiveProjectTask, changeProjectTask, changeSingleTask } from '@/api/tasks';
+import { getAllTasks, addNewSingleTask, addNewProjectTask, getTaskById, getAllTasksByProject, updateSingleTask, updateProjectTask, archiveSingleTask, archiveProjectTask, changeProjectTask, changeSingleTask, deleteTaskById } from '@/api/tasks';
 import { Task } from '@/model/task';
 import { SingleTask } from '@/model/singleTask';
 import { ProjectTask } from '@/model/projectTask';
@@ -143,6 +143,14 @@ export function useTasks() {
         }
     }
 
+    const deleteTask = async (id:number) => {
+        try{
+            await deleteTaskById(id);
+        } catch (error) {
+            console.log(error); // FIXME: Errorhandling
+        }
+    }
+
     onMounted(getTasks);
 
     return {
@@ -160,6 +168,7 @@ export function useTasks() {
         addProjectTask,
         addSingleTask,
         getSpecificTaskById,
-        changeTask
+        changeTask,
+        deleteTask
     }
 }
