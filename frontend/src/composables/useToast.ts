@@ -70,6 +70,16 @@ export async function addNewProjectTaskFail(){
     await toastPostFail.present();
 }
 
+export async function updateTaskFail(){
+    const toastPutFail = await toastController.create({
+        message: 'Could not update task',
+        duration: 2000,
+        position: 'middle',
+        color: 'danger'
+    })
+    await toastPutFail.present();
+}
+
 export async function updateSingleTaskSuccess(){
     const toastPutSuccess = await toastController.create({
         message: 'Single task update successful',
@@ -108,6 +118,25 @@ export async function updateProjectTaskFail(){
         color: 'danger'
     })
     await toastPutFail.present();
+}
+
+export async function deleteTaskByIdSuccess(){
+    const toastDelSuccess = await toastController.create({
+        message: 'Task successfully deleted',
+        duration: 2000,
+        position: 'middle',
+        color: 'success'
+    })
+    await toastDelSuccess.present();
+}
+
+export async function deleteTaskByIdFail(){
+    const toastDelFail = await toastController.create({
+        message: 'Task successfully deleted',
+        duration: 2000,
+        position: 'middle',
+        color: 'danger'
+    })
 }
 
 export async function archiveSingleTaskSuccess(){
@@ -169,24 +198,26 @@ export async function getProjectByIdFail(){
     await toastGetFail.present();
 } 
 
+
+
 export async function deleteProjectByIdSuccess(){
-    const toastPostSuccess = await toastController.create({
+    const toastDelSuccess = await toastController.create({
         message: 'Project successfully deleted',
         duration: 2000,
         position: 'middle',
         color: 'success'
     })
-    await toastPostSuccess.present();
+    await toastDelSuccess.present();
 }
 
 export async function deleteProjectByIdFail(){
-    const toastPostSuccess = await toastController.create({
+    const toastDelSuccess = await toastController.create({
         message: 'Project could not be deleted',
         duration: 2000,
         position: 'middle',
         color: 'danger'
     })
-    await toastPostSuccess.present();
+    await toastDelSuccess.present();
 }
 
 export async function changeProjectByIdSuccess(){

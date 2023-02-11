@@ -99,9 +99,8 @@ import {
 import { useTasks } from "../composables/useTasks";
 import { defineComponent, onMounted, onBeforeUpdate, onUpdated, watchEffect } from 'vue';
 import { ref } from "vue";
-import createProjecttask from "@/components/createProjecttask.vue";
-import createSingletask from "@/components/createSingletask.vue";
-/* import modalCreateProjecttask from '../components/modalCreateProjecttask.vue'; */
+import createProjecttask from "../components/createProjecttask.vue";
+import createSingletask from "../components/createSingletask.vue";
 
 watchEffect(() => {
   useTasks;
