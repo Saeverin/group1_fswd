@@ -72,13 +72,18 @@ import {
   IonButtons,
   IonDatetime
 } from "@ionic/vue";
-import { defineComponent, onActivated, onBeforeUpdate, onMounted, onUpdated } from 'vue';
+import { defineComponent, onActivated, onBeforeUpdate, onMounted, onUpdated, watchEffect } from 'vue';
 import { ref } from "vue";
 import { useProjects } from "../composables/useProjects";
 import createProject from "@/components/createProject.vue";
 
 const { newProject, projects, getProjects, addProject, finishProject, archiveProject } = useProjects();
 const isOpen = ref(false);
+
+watchEffect(() => {
+  useProjects;
+  projects;
+});
 
 onMounted(() => getProjects())
 

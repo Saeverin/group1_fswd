@@ -97,11 +97,16 @@ import {
   IonInput,
 } from "@ionic/vue";
 import { useTasks } from "../composables/useTasks";
-import { defineComponent, onMounted, onBeforeUpdate, onUpdated } from 'vue';
+import { defineComponent, onMounted, onBeforeUpdate, onUpdated, watchEffect } from 'vue';
 import { ref } from "vue";
 import createProjecttask from "@/components/createProjecttask.vue";
 import createSingletask from "@/components/createSingletask.vue";
 /* import modalCreateProjecttask from '../components/modalCreateProjecttask.vue'; */
+
+watchEffect(() => {
+  useTasks;
+});
+
 
 const isOpen = ref(false);
 const projectTask = ref<any>(null);
@@ -130,6 +135,7 @@ function setOpen(open: boolean) {
   isOpen.value = open;
   getTasks();
 }
+
 
 const { newTask, tasks, getTasks } =
   useTasks();
