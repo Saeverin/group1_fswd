@@ -16,20 +16,28 @@
         </ion-toolbar>
       </ion-header>
 
-      <h1 class="h1">Task Details </h1>
+      <h1 class="task_details_title">Task Details </h1>
+      <ion-icon button @click="toggleEdit()" class="task_details_edit" :icon="createOutline"></ion-icon>
+      <ion-icon button @click="changeTask(+id); toggleEdit()" :icon="checkmarkOutline" class="task_details_edit" :class="{editMode: !editMode}"></ion-icon>
+      <ion-icon button @click="toggleEdit()" :icon="closeOutline" class="task_details_edit" :class="{editMode: !editMode}"></ion-icon>
+        
         <ion-item>
         <ion-grid>
           <ion-row>
             <ion-col> Title:</ion-col>
-            <ion-col> {{ specificTask?.title }} </ion-col>
+            <ion-col> <ion-item><ion-input v-model="newTask.title" :value="specificTask?.title" :disabled="!editMode"></ion-input></ion-item> </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col> Type:</ion-col>
+            <ion-col> <ion-item><ion-input v-model="newTask.type" :value="specificTask?.type" :disabled="true"></ion-input></ion-item> </ion-col>
           </ion-row>
           <ion-row>
             <ion-col> Category:</ion-col>
-            <ion-col> {{ specificTask?.category }} </ion-col>
+            <ion-col> <ion-item><ion-input v-model="newTask.category" :value="specificTask?.category" :disabled="!editMode"></ion-input></ion-item> </ion-col>
           </ion-row>
           <ion-row>
             <ion-col> Start-Date:</ion-col>
-            <ion-col> {{ specificTask?.startDate }} </ion-col>
+            <ion-col> {{ specificTask?.startDate }}    </ion-col>
           </ion-row>
           <ion-row>
             <ion-col>End-Date:</ion-col>
@@ -37,9 +45,9 @@
           </ion-row>
           <ion-row>
             <ion-col>Text:</ion-col>
-            <ion-col> {{ specificTask?.text }} </ion-col>
+            <ion-col> <ion-item><ion-textarea v-model="newTask.text" :value="specificTask?.text" :disabled="!editMode"></ion-textarea></ion-item> </ion-col>
           </ion-row>
-          <ion-row>
+          <ion-row v-if="specificTask?.type == 'ProjectTask'">
             <ion-col>Project:</ion-col>
             <ion-col> {{ specificTask?.project?.title }} </ion-col>
           </ion-row>
@@ -71,15 +79,22 @@ import {
   IonTitle,
   IonToolbar,
   IonGrid,
+  IonModal,
+  IonDatetimeButton,
+  IonDatetime,
   IonRow,
-  IonCol
+  IonCol,
+  IonInput,
+  IonTextarea,
+  IonIcon
 } from "@ionic/vue";
+import {createOutline,checkmarkOutline,closeOutline} from 'ionicons/icons';
 import { defineComponent, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { useTasks } from "../composables/useTasks";
 import { ref } from "vue";
 
-const { newTask, tasks, specificTask, getTasks, finishSingleTask, finishProjectTask, archiveSingleTask, archiveProjectTask, getSpecificTaskById } =
+const { newTask, tasks, specificTask, getTasks, finishSingleTask, finishProjectTask, archiveSingleTask, archiveProjectTask, getSpecificTaskById, changeTask } =
   useTasks();
 
   const route = useRoute();
@@ -88,6 +103,7 @@ const { newTask, tasks, specificTask, getTasks, finishSingleTask, finishProjectT
 
   const isOpen = ref(false);
 const projectTask = ref<any>(null);
+  const editMode = ref(false);
 
 function setProjectFalse() {
   projectTask.value = false; 
@@ -102,6 +118,10 @@ function setOpen(open: boolean) {
   isOpen.value = open;
   getTasks();
 }
+
+function toggleEdit() {
+    editMode.value = !editMode.value;
+  }
 
 function finishTask() {
   if(specificTask.value?.type == "SingleTask") {
@@ -135,7 +155,17 @@ ion-col {
   color: #fff;
   text-align: left;
 }
-.h1 {
-  text-align: center;
+.task_details_title {
+  display: inline-block;
+}
+
+.task_details_edit{
+  margin-left: 20px;
+  height: 25px;
+  width: 25px;;
+}
+
+.editMode{
+  display: none;
 }
 </style>

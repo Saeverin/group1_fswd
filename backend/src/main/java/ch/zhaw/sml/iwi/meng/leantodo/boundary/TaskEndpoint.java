@@ -55,17 +55,17 @@ public class TaskEndpoint {
         taskController.persistTask(singleTask, principal.getName());
     }
 
-    /* @RequestMapping(path = "/api/projecttask/{id}", method = RequestMethod.PUT)
+    @RequestMapping(path = "/api/projecttask/{id}", method = RequestMethod.PUT)
     @PreAuthorize("isAuthenticated() AND hasRole('USER')")
-    public void updateProjectTask(@PathVariable("id") Long id,@RequestBody ProjectTask projectTask, Principal principal) {
-        taskController.updateTask(projectTask, principal.getName());
+    public void updateProjectTask(@PathVariable("id") Long id,@RequestBody Task projectTask, Principal principal) {
+        taskController.updateTask(projectTask, id);
     }
 
     @RequestMapping(path = "/api/singletask/{id}", method = RequestMethod.PUT)
     @PreAuthorize("isAuthenticated() AND hasRole('USER')")
-    public void updateSingleTask(@PathVariable("id") Long id,@RequestBody SingleTask singleTask, Principal principal) {
-        taskController.updateTask(singleTask, principal.getName());
-    } */
+    public void updateSingleTask(@PathVariable("id") Long id,@RequestBody Task singleTask, Principal principal) {
+        taskController.updateTask(singleTask, id);
+    }
 
     @RequestMapping(path = "/api/task/{id}", method = RequestMethod.PUT)
     @PreAuthorize("isAuthenticated() AND hasRole('USER')")

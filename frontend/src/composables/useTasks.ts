@@ -1,4 +1,4 @@
-import { getAllTasks, addNewSingleTask, addNewProjectTask, getTaskById, getAllTasksByProject, updateSingleTask, updateProjectTask, archiveSingleTask, archiveProjectTask } from '@/api/tasks';
+import { getAllTasks, addNewSingleTask, addNewProjectTask, getTaskById, getAllTasksByProject, updateSingleTask, updateProjectTask, archiveSingleTask, archiveProjectTask, changeProjectTask, changeSingleTask } from '@/api/tasks';
 import { Task } from '@/model/task';
 import { SingleTask } from '@/model/singleTask';
 import { ProjectTask } from '@/model/projectTask';
@@ -121,6 +121,30 @@ export function useTasks() {
         }
     }
 
+    const changeTask = async (id: number) => {
+        try {
+            // add the new todo and update the list of all todos afterwards
+            if(newTask.value.type == "SingleTask") {
+                newSingleTask.value.type = newTask.value.type;
+                newSingleTask.value.title = newTask.value.title;
+                newSingleTask.value.category = newTask.value.category;
+                newSingleTask.value.text = newTask.value.text;
+                changeSingleTask(newSingleTask.value, id);
+            } else {
+                newProjectTask.value.type =  newTask.value.type;
+                newProjectTask.value.title =  newTask.value.title;
+                newProjectTask.value.category =  newTask.value.category;
+                newProjectTask.value.text =  newTask.value.text;
+                changeProjectTask(newProjectTask.value, id);
+            }
+        } catch (error) {
+            return(error);
+            console.log(error); // FIXME: Errorhandling
+        }
+    }
+
+    onMounted(getTasks);
+
     return {
         newTask,
         newProjectTask,
@@ -135,6 +159,7 @@ export function useTasks() {
         archiveProjectTask,
         addProjectTask,
         addSingleTask,
-        getSpecificTaskById
+        getSpecificTaskById,
+        changeTask
     }
 }

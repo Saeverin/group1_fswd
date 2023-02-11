@@ -101,6 +101,23 @@ export async function updateSingleTask(task: SingleTask, taskId: number): Promis
     }
 }
 
+export async function changeSingleTask(task: SingleTask, taskId: number): Promise<any> {
+    const config = {
+        withCredentials: true
+    }
+    try {
+        console.log(task);
+        const response = await axios.put(API_ROOT + '/api/singletask/' + taskId, task, config);
+        updateSingleTaskSuccess();
+        return response.data;
+    } catch (error) {
+        updateSingleTaskFail();
+        return error;
+    }
+}
+
+
+
 export async function updateProjectTask(task: ProjectTask, taskId: number): Promise<any> {
     const config = {
         withCredentials: true
@@ -112,6 +129,21 @@ export async function updateProjectTask(task: ProjectTask, taskId: number): Prom
         return response.data;
     } catch (error) {
         updateProjectTaskFail();
+        return error;
+    }
+}
+
+export async function changeProjectTask(task: ProjectTask, taskId: number): Promise<any> {
+    const config = {
+        withCredentials: true
+    }
+    try {
+        console.log(task);
+        const response = await axios.put(API_ROOT + '/api/projecttask/' + taskId, task, config);
+        updateProjectTaskSuccess();
+        return response.data;
+    } catch (error) {
+        updateSingleTaskFail();
         return error;
     }
 }

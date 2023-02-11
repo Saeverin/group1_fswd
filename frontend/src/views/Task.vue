@@ -1,5 +1,5 @@
 <template>
-  <ion-page>
+  <ion-page :key="componentKey">
     <ion-header>
       <ion-toolbar>
         <ion-title>Tasks</ion-title>
@@ -105,8 +105,15 @@ import createSingletask from "@/components/createSingletask.vue";
 
 const isOpen = ref(false);
 const projectTask = ref<any>(null);
+const componentKey = ref(0);
 
-onMounted(() => getTasks());
+const forceRerender = () => {
+  componentKey.value += 1;
+};
+
+onMounted(() => {
+  getTasks();
+});
 
 onUpdated(() => getTasks())
 

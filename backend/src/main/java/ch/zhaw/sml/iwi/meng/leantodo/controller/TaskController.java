@@ -56,7 +56,18 @@ public class TaskController {
     public void updateTask(Task task, Long id) {
         Task orig = taskRepository.findById(id).get();
         
-        orig.setDone(task.getDone());
+        if(task.getDone()) {
+            orig.setDone(task.getDone());
+        }
+        if(task.getTitle() != null && task.getTitle() != "") {
+            orig.setTitle(task.getTitle());
+        }
+        if(task.getCategory() != null && task.getCategory() != "") {
+            orig.setCategory(task.getCategory());
+        }
+        if(task.getText() != null && task.getText() != "") {
+            orig.setText(task.getText());
+        }
 
         taskRepository.save(orig);
     }
