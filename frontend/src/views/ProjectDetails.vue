@@ -33,7 +33,7 @@
             </ion-row>
               <ion-row>
                 <ion-col> Done:  </ion-col>
-                <ion-col> <ion-item><ion-checkbox :value="(specificProject?.done)" :disabled="true"></ion-checkbox></ion-item> </ion-col>
+                <ion-col> <ion-item><ion-checkbox :value="specificProject?.done" :checked="specificProject?.done" :aria-checked="specificProject?.done"  :disabled="true"></ion-checkbox></ion-item></ion-col>
               </ion-row>
               <ion-row>
               <ion-col> Deadline:</ion-col>
@@ -50,7 +50,7 @@
         <ion-list>
         <ion-row>
           <ion-col>Title</ion-col>
-          <ion-col>Category</ion-col>
+          <ion-col>Assignee</ion-col>
           <ion-col>Enddate</ion-col>
         </ion-row>
         <ion-item button :router-link="'/tabs/task/' + task.id" :key="task.id" v-for="task in tasks">
@@ -60,7 +60,7 @@
                 {{ task.title }}
               </ion-col>
               <ion-col>
-                {{ task.category }}
+                {{ task.owner }}
               </ion-col>
               <ion-col>
                 {{ task.endDate }}
@@ -91,6 +91,8 @@
         </ion-modal>
       </div>
 
+      <ion-button @click="archiveProject(+id)" :router-link="'/tabs/projects'" color="warning">Archive Project</ion-button>
+      <br>
       <ion-button @click="deleteProject(+id)" :router-link="'/tabs/projects'" color="danger">Delete Project</ion-button>
 
       </ion-content>
@@ -117,7 +119,7 @@
     IonCheckbox,
     IonRow,
     IonGrid,
-    IonCol
+    IonCol,
   } from "@ionic/vue";
   import {createOutline,checkmarkOutline,closeOutline} from 'ionicons/icons';
   import { defineComponent, onUpdated } from 'vue';
@@ -126,14 +128,15 @@
   import { useProjects } from "../composables/useProjects";
   import { useTasks } from "../composables/useTasks";
   import createProjecttask from "@/components/createProjecttask.vue";
-import { Project } from "../model/project";
+  import { Project } from "../model/project";
   
-  const { specificProject, newProject, getSpecificProjectById, deleteProject, changeProject } = useProjects();
+  const { specificProject, newProject, getSpecificProjectById, deleteProject, changeProject, archiveProject } = useProjects();
   const { tasks, getTasksByProject } = useTasks();
   const isOpen = ref(false);
   const editMode = ref(false);
 
   const route = useRoute();
+
   
   const id = route.params.id;
 

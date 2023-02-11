@@ -19,6 +19,19 @@ export async function getAllTasks(): Promise<Task[]> {
     }
 }
 
+export async function getAllArchivedTasks(): Promise<Task[]> {
+    const config = {
+        withCredentials: true
+    }
+    try {
+        const response = await axios.get(API_ROOT + '/api/archive/task', config);
+        return response.data;
+    } catch (error) {
+        getAllTasksFail();
+        return <any>error;
+    }
+}
+
 export async function getAllTasksByProject(pathId: number): Promise<Task[]> {
     const config = {
         withCredentials: true

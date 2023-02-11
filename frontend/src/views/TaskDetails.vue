@@ -44,8 +44,11 @@
             <ion-col> {{ specificTask?.endDate }} </ion-col>
           </ion-row>
           <ion-row>
-            <ion-col>Text:</ion-col>
-            <ion-col> <ion-item><ion-textarea v-model="newTask.text" :value="specificTask?.text" :disabled="!editMode"></ion-textarea></ion-item> </ion-col>
+            <ion-col>
+              Text:
+            </ion-col>
+            <ion-col> <ion-item><ion-textarea v-model="newTask.text" :value="specificTask?.text" :disabled="!editMode"></ion-textarea></ion-item><br>
+              <ion-button @click="writeToClipboard(specificTask?.text as string)">To Clipboard</ion-button> </ion-col>
           </ion-row>
           <ion-row v-if="specificTask?.type == 'ProjectTask'">
             <ion-col>Project:</ion-col>
@@ -94,9 +97,16 @@ import { defineComponent, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { useTasks } from "../composables/useTasks";
 import { ref } from "vue";
+import { Clipboard } from '@capacitor/clipboard';
 
 const { newTask, tasks, specificTask, getTasks, finishSingleTask, finishProjectTask, archiveSingleTask, archiveProjectTask, getSpecificTaskById, changeTask, deleteTask } =
   useTasks();
+
+  const writeToClipboard = async (text: string) => {
+  await Clipboard.write({
+    string: text
+  });
+};
 
   const route = useRoute();
 

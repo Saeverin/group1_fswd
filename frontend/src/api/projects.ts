@@ -16,6 +16,20 @@ export async function getAllProJects(): Promise<Project[]>   {
     }
 }
 
+export async function getAllArchivedProjects(): Promise<Project[]>   { 
+    const config = {        
+        withCredentials: true
+    }
+    try {
+        const response = await axios.get(API_ROOT + '/api/archive/project', config);
+        return response.data;
+    } catch (error) {
+        getAllProjectsFail();
+        return <any>error;   
+    }
+}
+
+
 export async function getProjectById(pathId: number): Promise<Project>   { 
     const config = {        
         withCredentials: true

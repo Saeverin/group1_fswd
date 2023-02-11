@@ -1,4 +1,4 @@
-import { getAllTasks, addNewSingleTask, addNewProjectTask, getTaskById, getAllTasksByProject, updateSingleTask, updateProjectTask, archiveSingleTask, archiveProjectTask, changeProjectTask, changeSingleTask, deleteTaskById } from '@/api/tasks';
+import { getAllTasks, addNewSingleTask, addNewProjectTask, getTaskById, getAllTasksByProject, updateSingleTask, updateProjectTask, archiveSingleTask, archiveProjectTask, changeProjectTask, changeSingleTask, deleteTaskById, getAllArchivedTasks } from '@/api/tasks';
 import { Task } from '@/model/task';
 import { SingleTask } from '@/model/singleTask';
 import { ProjectTask } from '@/model/projectTask';
@@ -13,6 +13,8 @@ export function useTasks() {
 
     const tasks = ref<Task[]>([]);
 
+    const archivedTasks = ref<Task[]>([]);
+
     const newTask = ref<Task>({});
 
     const newProjectTask = ref<ProjectTask>({});
@@ -22,6 +24,15 @@ export function useTasks() {
     const getTasks = async () => {
         try {
             tasks.value = await getAllTasks();
+        } catch (error) {
+            getAllTasksFail();
+            console.log(error);
+        }
+    }
+
+    const getArchivedTasks = async () => {
+        try {
+            archivedTasks.value = await getAllArchivedTasks();
         } catch (error) {
             getAllTasksFail();
             console.log(error);
@@ -77,7 +88,8 @@ export function useTasks() {
         try {
             newSingleTask.value.done = true;
             updateSingleTask(newSingleTask.value, id);
-            archiveSingleTaskSuccess();
+            updateSingleTaskSuccess();
+            getTasks();
         } catch (error) {
             archiveSingleTaskFail();
             console.log(error);
@@ -89,13 +101,16 @@ export function useTasks() {
         try {
             newProjectTask.value.archived = true;
             await updateProjectTask(newProjectTask.value, id);
-            archiveProjectTaskSuccess();
+            updateProjectTaskSuccess();
+            getTasks();
         } catch (error) {
             archiveProjectTaskFail();
             console.log(error);
             return(error);
         }
     }    
+
+   
 
     const addSingleTask = async () => {
         try {
@@ -166,6 +181,7 @@ export function useTasks() {
         newSingleTask,
         tasks,
         specificTask,
+        archivedTasks,
         getTasks,
         getTasksByProject,
         finishSingleTask,
@@ -176,6 +192,7 @@ export function useTasks() {
         addSingleTask,
         getSpecificTaskById,
         changeTask,
-        deleteTask
+        deleteTask,
+        getArchivedTasks
     }
 }

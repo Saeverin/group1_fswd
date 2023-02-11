@@ -27,9 +27,13 @@ public class TaskController {
         return taskRepository.findAllButArchivedByOwner(loginName);
     }
 
+    public List<Task> listAllArchivedTasks(String loginName) {
+        return taskRepository.findAllArchivedByOwner(loginName);
+    }
+
     public List<Task> listAllTasksByProject(String loginName, Long id) {
         Project project = projectRepository.findById(id).get(); 
-        return taskRepository.findAllProjecttasksByProject(loginName, project);
+        return taskRepository.findAllProjecttasksByProject(project);
     }
 
     public Task getTaskById(Long id) {
@@ -46,7 +50,10 @@ public class TaskController {
         Optional<Project> project = projectRepository.findById(id);
 
         if(project.isPresent()) {
+            Project p = project.get();
             newProjectTask.setProject(project.get());
+            p.setDone(false);
+            projectRepository.save(p);
         }
 
         newProjectTask.setOwner(owner);
@@ -70,6 +77,29 @@ public class TaskController {
         }
 
         taskRepository.save(orig);
+        taskRepository.flush();
+
+
+        if(task instanceof ProjectTask) {
+            System.out.println("It's a Projecttask!");
+            ProjectTask projectTask = (ProjectTask) taskRepository.findById(id).get();
+            Project project = projectTask.getProject();
+            List<Task> allProjectTasks = taskRepository.findAllProjecttasksByProject(project);
+            
+            Boolean projectStatus = true;
+            for (Task t : allProjectTasks) {
+                if(!t.getDone()) {
+                    projectStatus = false;
+                    break;
+                }
+            }
+
+            if (projectStatus) {
+                project.setDone(true);
+                projectRepository.save(project);
+                projectRepository.flush();
+            }
+        }
     }
 
     public void archiveTask(Task task, Long id) {

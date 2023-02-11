@@ -2,10 +2,12 @@ package ch.zhaw.sml.iwi.meng.leantodo.controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ch.zhaw.sml.iwi.meng.leantodo.entity.Project;
+import ch.zhaw.sml.iwi.meng.leantodo.entity.Task;
 import ch.zhaw.sml.iwi.meng.leantodo.entity.ProjectRepository;
 import ch.zhaw.sml.iwi.meng.leantodo.entity.ProjectTask;
 import ch.zhaw.sml.iwi.meng.leantodo.entity.TaskRepository;
@@ -21,7 +23,11 @@ public class ProjectController {
     private TaskRepository taskRepository;
 
     public List<Project> listAllProjects(String loginName) {
-        return projectRepository.findByOwner(loginName);
+        return projectRepository.findAllButArchived(loginName);
+    }
+
+    public List<Project> listAllArchivedProjects(String loginName) {
+        return projectRepository.findAllArchived(loginName);
     }
 
     public Project getProjectById(Long id) {
@@ -56,10 +62,25 @@ public class ProjectController {
     public void updateProjectById(Project project, Long id){
         Project oldProject = projectRepository.findById(id).get();
 
-        oldProject.setTitle(project.getTitle());
-
+        if(project.getTitle() != null) {
+            oldProject.setTitle(project.getTitle());
+        }
+        
         if(project.getDeadline() != null) {
             oldProject.setDeadline(project.getDeadline());
+        }
+
+        if(project.getArchived() != null && project.getArchived()) {
+            oldProject.setArchived(project.getArchived());
+
+            if(project.getArchived()) {
+                List<Task> tasks = taskRepository.findAllProjecttasksByProject(oldProject);
+
+                for (Task t : tasks) {
+                    t.setArchived(true);
+                    taskRepository.save(t);
+                }
+            }
         }
 
         projectRepository.save(oldProject);

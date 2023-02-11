@@ -1,5 +1,5 @@
 <template>
-  <ion-page :key="componentKey">
+  <ion-page v-if="renderComponent">
     <ion-header>
       <ion-toolbar>
         <ion-title>Tasks</ion-title>
@@ -21,7 +21,7 @@
         
           
             <ion-row  button :router-link="'/tabs/task/' + task.id" :key="task.id" v-for="task in tasks">
-              <ion-col class="col-content">
+              <ion-col :v-bind="task.title" class="col-content">
                 {{ task.title }}
               </ion-col>
               <ion-col class="col-content">
@@ -67,8 +67,8 @@
                 </ion-item>
               </ion-radio-group>
             </ion-list>
-            <create-projecttask @some-event="setOpen(false); getTasks();" v-if="projectTask"></create-projecttask>
-            <create-singletask @some-event="setOpen(false); getTasks();" v-if="projectTask == false" ></create-singletask>
+            <create-projecttask @some-event="someEventListener" v-if="projectTask"></create-projecttask>
+            <create-singletask @some-event="someEventListener" v-if="projectTask == false" ></create-singletask>
           </ion-content>
         </ion-modal>
       </div>
@@ -97,24 +97,49 @@ import {
   IonInput,
 } from "@ionic/vue";
 import { useTasks } from "../composables/useTasks";
-import { defineComponent, onMounted, onBeforeUpdate, onUpdated } from 'vue';
+import { defineComponent, onMounted, onBeforeUpdate, onUpdated, watchEffect, nextTick } from 'vue';
 import { ref } from "vue";
 import createProjecttask from "../components/createProjecttask.vue";
 import createSingletask from "../components/createSingletask.vue";
 
+const { newTask, tasks, getTasks } =  useTasks();
+
+const renderComponent = ref(true);
+
+watchEffect(() => {
+  useTasks;
+  tasks;
+});
+
+
+async function forceRerender() {
+        // Removing my-component from the DOM
+        renderComponent.value = false;
+
+        await nextTick(() => {
+          // Adding the component back in
+          renderComponent.value = true;
+          setOpen(false);
+        });
+}
+
 const isOpen = ref(false);
 const projectTask = ref<any>(null);
 const componentKey = ref(0);
-
-const forceRerender = () => {
-  componentKey.value += 1;
-};
 
 onMounted(() => {
   getTasks();
 });
 
 onUpdated(() => getTasks())
+
+function someEventListener() {
+  
+  getTasks();
+  componentKey.value += 1;
+  setOpen(false); 
+  
+}
 
 function setProjectFalse() {
   projectTask.value = false;
@@ -128,10 +153,13 @@ function setOpen(open: boolean) {
   //Öffnen/Schliessen + update Tasklist
   isOpen.value = open;
   getTasks();
-}
+  if(!open) {
+    window.location.reload();
+  }
+ }
 
-const { newTask, tasks, getTasks } =
-  useTasks();
+
+
 </script>
 
 <style scoped>

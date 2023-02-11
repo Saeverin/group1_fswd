@@ -31,6 +31,12 @@ public class TaskEndpoint {
         return  taskController.listAllTasks(principal.getName());        
     }
 
+    @RequestMapping(path = "/api/archive/task", method = RequestMethod.GET)
+    @PreAuthorize("isAuthenticated() AND hasRole('USER')")
+    public List<Task> taskArchived(Principal principal) {
+        return  taskController.listAllArchivedTasks(principal.getName());        
+    }
+
     @RequestMapping(path = "/api/task/{id}", method = RequestMethod.GET)
     @PreAuthorize("isAuthenticated() AND hasRole('USER')")
     public Task taskById(@PathVariable("id") Long id, Principal principal) {
@@ -46,7 +52,7 @@ public class TaskEndpoint {
     @RequestMapping(path = "/api/project/{id}", method = RequestMethod.POST)
     @PreAuthorize("isAuthenticated() AND hasRole('USER')")
     public void addProjectTask(@PathVariable("id") Long id, @RequestBody ProjectTask projectTask, Principal principal) {
-        taskController.persistProjectTask(projectTask, "user", id);
+        taskController.persistProjectTask(projectTask, principal.getName(), id);
     }
     
     @RequestMapping(path = "/api/singletask", method = RequestMethod.POST)

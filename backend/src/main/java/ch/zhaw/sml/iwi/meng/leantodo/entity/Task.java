@@ -48,6 +48,5 @@ public abstract class Task {
     private LocalDateTime startDate;
     private LocalDateTime endDate;
 
-    @JsonIgnore
     private String owner;
 }
