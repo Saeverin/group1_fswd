@@ -21,7 +21,11 @@
         </ion-row>
         
           
+<<<<<<< HEAD
  <ion-row  button :router-link="'/tabs/task/' + task.id" :key="task.id" v-for="task in tasks" style="cursor: pointer;">
+=======
+            <ion-item  button :router-link="'/tabs/task/' + task.id" :key="task.id" v-for="task in tasks">
+>>>>>>> e694fdd22fca894a69ca7e61c9f31dfd43fa13be
               <ion-col :v-bind="task.title" class="col-content">
                 {{ task.title }}
               </ion-col>
@@ -34,9 +38,14 @@
               <ion-col class="col-content">
                 {{ task.project?.title }}
               </ion-col>
+<<<<<<< HEAD
   </ion-row>
         </ion-grid>
         
+=======
+              </ion-item>
+            </ion-grid>
+>>>>>>> e694fdd22fca894a69ca7e61c9f31dfd43fa13be
           
       </ion-list>
 
