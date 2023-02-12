@@ -56,7 +56,7 @@
 
 <script setup lang="ts">
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonList,IonItem, IonGrid,IonRow,IonCol } from '@ionic/vue';
-import { onMounted } from 'vue';
+import { onMounted, onUpdated } from 'vue';
 import { useProjects } from '../composables/useProjects';
 
 import { useTasks } from "../composables/useTasks";
@@ -65,6 +65,11 @@ const { archivedTasks, getArchivedTasks } = useTasks();
 const { archivedProjects, getArchivedProjects } = useProjects();
 
 onMounted(() => {
+  getArchivedTasks();
+  getArchivedProjects();
+})
+
+onUpdated(() => {
   getArchivedTasks();
   getArchivedProjects();
 })

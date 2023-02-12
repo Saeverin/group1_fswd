@@ -95,13 +95,17 @@ onMounted(() => getProjects())
 
 onUpdated(() => getProjects())
 
+function delay(time: number) {
+  return new Promise(resolve => setTimeout(resolve, time));
+}
+
 function setOpen(open: boolean) {
   //Öffnen/Schliessen + update Tasklist
   isOpen.value = open;
   getProjects();
 
   if(!open) {
-    window.location.reload();
+    delay(1000).then(() => getProjects());
   }
 }
 
