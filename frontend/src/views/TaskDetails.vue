@@ -65,7 +65,7 @@
           </ion-row>
           <ion-row>
             <ion-col>Finished:</ion-col>
-            <ion-col> {{ specificTask?.done }} </ion-col>
+            <ion-col><ion-checkbox :value="specificTask?.done" :checked="specificTask?.done" :aria-checked="specificTask?.done"  :disabled="true"></ion-checkbox> </ion-col>
           </ion-row>
         </ion-grid>
         </ion-item>
@@ -94,6 +94,7 @@ import {
   IonCol,
   IonInput,
   IonTextarea,
+  IonCheckbox,
   IonIcon
 } from "@ionic/vue";
 import {createOutline,checkmarkOutline,closeOutline} from 'ionicons/icons';
