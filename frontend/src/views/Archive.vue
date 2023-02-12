@@ -27,7 +27,7 @@
         </ion-item>
       </ion-list>
       <h1>Archived Projects</h1>
-      <ion-list>
+      <ion-list class="wrapper">
         <ion-item :key="project.id" v-for="project in archivedProjects">
           <ion-grid>
             <ion-row>

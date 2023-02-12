@@ -1,5 +1,5 @@
 import { getAllProJects, updateProJect, addNewProJect, getProjectById, deleteProjectById, changeProjectById, getAllArchivedProjects } from '@/api/projects';
-import {getAllProjectsFail, getProjectByIdFail, deleteProjectByIdSuccess, deleteProjectByIdFail, changeProjectByIdSuccess, changeProjectByIdFail, addNewProjectSuccess, addNewProjectFail, updateProjectSuccess, updateProjectFail} from '@/composables/useToast';
+import {archiveProjectSuccess, archiveProjectFail, getAllProjectsFail, getProjectByIdFail, deleteProjectByIdSuccess, deleteProjectByIdFail, changeProjectByIdSuccess, changeProjectByIdFail, addNewProjectSuccess, addNewProjectFail, updateProjectSuccess, updateProjectFail} from '@/composables/useToast';
 import  { Project } from '../model/project';
 import { onMounted, ref } from 'vue';
 
@@ -75,10 +75,10 @@ export function useProjects() {
         try {
             newProject.value.archived = true;
             await changeProjectById(newProject.value, id);
-            updateProjectSuccess();
+            archiveProjectSuccess();
             getProjects();
         } catch (error) {
-            updateProjectFail();
+            archiveProjectFail();
             console.log(error);
         }
     }

@@ -279,3 +279,23 @@ export async function updateProjectFail(){
     })
     await toastPutFail.present();
 }
+
+export async function archiveProjectSuccess(){
+    const toastPutSuccess = await toastController.create({
+        message: 'Project archived',
+        duration: 2000,
+        position: 'middle',
+        color: 'success'
+    })
+    await toastPutSuccess.present();
+}
+
+export async function archiveProjectFail(){
+    const toastPutSuccess = await toastController.create({
+        message: 'Could not archive project',
+        duration: 2000,
+        position: 'middle',
+        color: 'danger'
+    })
+    await toastPutSuccess.present();
+}
