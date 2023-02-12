@@ -50,7 +50,7 @@
             <ion-col> <ion-item><ion-textarea v-model="newTask.text" :value="specificTask?.text" :disabled="!editMode"></ion-textarea></ion-item><br>
               <ion-button @click="writeToClipboard(specificTask?.text as string)">To Clipboard</ion-button> </ion-col>
           </ion-row>
-          <ion-row button :router-link="'/tabs/project/'+specificTask.project?.id" v-if="specificTask?.type == 'ProjectTask'">
+          <ion-row button :router-link="'/tabs/project/'+specificTask.project?.id" v-if="specificTask?.type == 'ProjectTask'" style="cursor: pointer;">
             <ion-col>Project:</ion-col>
             <ion-col> {{ specificTask?.project?.title }} </ion-col>
           </ion-row>
@@ -165,6 +165,7 @@ const id = route.params.id;
   margin-left: 20px;
   height: 25px;
   width: 25px;;
+  cursor: pointer;
 }
 
 .editMode{

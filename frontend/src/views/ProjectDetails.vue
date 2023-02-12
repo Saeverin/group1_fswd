@@ -167,7 +167,8 @@
     .project_details_edit{
       margin-left: 20px;
       height: 25px;
-      width: 25px;;
+      width: 25px;
+      cursor: pointer;
     }
 
     .editMode{
