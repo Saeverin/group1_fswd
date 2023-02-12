@@ -16,7 +16,7 @@
           </ion-toolbar>
         </ion-header>
   
-        <h1 class="project_details_title">Project Details</h1>
+        <h1 class="ueberschrift">Project Details</h1>
         <ion-icon button @click="toggleEdit()" class="project_details_edit" :icon="createOutline"></ion-icon>
         <ion-icon button @click="changeProject(+id); toggleEdit()" :icon="checkmarkOutline" class="project_details_edit" :class="{editMode: !editMode}"></ion-icon>
         <ion-icon button @click="toggleEdit()" :icon="closeOutline" class="project_details_edit" :class="{editMode: !editMode}"></ion-icon>
@@ -46,7 +46,7 @@
          </ion-modal>
         </ion-list>
 
-        <h1>Project Tasks</h1>
+        <h1 class="ueberschrift">Project Tasks</h1>
         <ion-list class="wrapper">
         <ion-row>
           <ion-col>Title</ion-col>
@@ -163,9 +163,6 @@
   </script>
     
     <style scoped>
-    .project_details_title{
-      display: inline-block;
-    }
 
     .project_details_edit{
       margin-left: 20px;

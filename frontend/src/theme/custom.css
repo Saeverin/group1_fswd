@@ -50,4 +50,5 @@ ion-title{
 
 .ueberschrift{
     margin-left: 1%;
+    display: inline-block;
 }
