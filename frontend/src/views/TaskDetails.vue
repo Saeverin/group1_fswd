@@ -16,7 +16,7 @@
         </ion-toolbar>
       </ion-header>
 
-      <h1 class="task_details_title">Task Details </h1>
+      <h1 class="ueberschrift">Task Details </h1>
       <ion-icon button @click="toggleEdit()" class="task_details_edit" :icon="createOutline"></ion-icon>
       <ion-icon button @click="changeTask(+id); toggleEdit()" :icon="checkmarkOutline" class="task_details_edit" :class="{editMode: !editMode}"></ion-icon>
       <ion-icon button @click="toggleEdit()" :icon="closeOutline" class="task_details_edit" :class="{editMode: !editMode}"></ion-icon>
@@ -160,9 +160,6 @@ const id = route.params.id;
 </script>
   
 <style scoped>
-.task_details_title {
-  display: inline-block;
-}
 
 .task_details_edit{
   margin-left: 20px;

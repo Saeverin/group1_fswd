@@ -31,7 +31,7 @@
           </ion-grid>
         </ion-item>
       </ion-list>
-      <h1>Archived Projects</h1>
+      <h1 class="ueberschrift">Archived Projects</h1>
       <ion-list class="wrapper">
         <ion-row>
           <ion-col class="col-header">Title</ion-col>
