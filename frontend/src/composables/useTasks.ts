@@ -151,7 +151,6 @@ export function useTasks() {
         try {
             // add the new todo and update the list of all todos afterwards
             await addNewProjectTask(newProjectTask.value);
-            addNewProjectTaskSuccess();
             getTasks();
         } catch (error) {
             addNewProjectTaskFail();
