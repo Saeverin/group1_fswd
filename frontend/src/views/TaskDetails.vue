@@ -63,6 +63,10 @@
                 @click="archiveTask()" :router-link="'/tabs/task'">Archive</ion-button>
               </ion-col> 
           </ion-row>
+          <ion-row>
+            <ion-col>Finished:</ion-col>
+            <ion-col> {{ specificTask?.done }} </ion-col>
+          </ion-row>
         </ion-grid>
         </ion-item>
         <ion-button @click="deleteTask(+id)" :router-link="'/tabs/task'" color="danger">Delete Task</ion-button>
