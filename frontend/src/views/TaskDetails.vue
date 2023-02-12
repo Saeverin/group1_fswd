@@ -139,6 +139,7 @@ function toggleEdit() {
     editMode.value = !editMode.value;
   }
 
+  
 function finishTask() {
   if(specificTask.value?.type == "SingleTask") {
     finishSingleTask(+TaskId);

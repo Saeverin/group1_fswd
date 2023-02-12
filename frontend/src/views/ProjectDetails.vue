@@ -144,10 +144,19 @@
     editMode.value = !editMode.value;
   }
 
+
+  function delay(time: number) {
+  return new Promise(resolve => setTimeout(resolve, time));
+}
+
   function setOpen(open: boolean) {
   //Öffnen/Schliessen + update Tasklist
   isOpen.value = open;
   getTasksByProject(+id);
+
+  if(!open) {
+    delay(1000).then(() => getTasksByProject(+id));
+  }
 }
 
   onMounted( () => {
