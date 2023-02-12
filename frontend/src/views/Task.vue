@@ -7,7 +7,7 @@
     </ion-header>
     <ion-content :fullscreen="true">
       <ion-header collapse="condense">
-        <ion-toolbar>
+        <ion-toolbar class="toolbar">
           <ion-title size="large">Tasks</ion-title>
         </ion-toolbar>
       </ion-header>
@@ -21,7 +21,11 @@
         </ion-row>
         
           
+<<<<<<< HEAD
+            <ion-item  button :router-link="'/tabs/task/' + task.id" :key="task.id" v-for="task in tasks">
+=======
             <ion-row  button :router-link="'/tabs/task/' + task.id" :key="task.id" v-for="task in tasks" style="cursor: pointer;">
+>>>>>>> 047fbcb24184c7a6e13adfc7d9995c1e385ab181
               <ion-col :v-bind="task.title" class="col-content">
                 {{ task.title }}
               </ion-col>
@@ -34,11 +38,15 @@
               <ion-col class="col-content">
                 {{ task.project?.title }}
               </ion-col>
+<<<<<<< HEAD
+              </ion-item>
+            
+=======
             </ion-row>
         </ion-grid>
         
+>>>>>>> 047fbcb24184c7a6e13adfc7d9995c1e385ab181
           
-    
       </ion-list>
 
       <div>

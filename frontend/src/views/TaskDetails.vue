@@ -22,7 +22,7 @@
       <ion-icon button @click="toggleEdit()" :icon="closeOutline" class="task_details_edit" :class="{editMode: !editMode}"></ion-icon>
         
         <ion-item>
-        <ion-grid>
+        <ion-grid class="wrapper">
           <ion-row>
             <ion-col> Title:</ion-col>
             <ion-col> <ion-item><ion-input v-model="newTask.title" :value="specificTask?.title" :disabled="!editMode"></ion-input></ion-item> </ion-col>

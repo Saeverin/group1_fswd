@@ -11,14 +11,20 @@
           <ion-title size="large">Projects</ion-title>
         </ion-toolbar>
       </ion-header>
-      <ion-list class=wrapper>
+
+      <ion-list class="wrapper">
+        <ion-row>
+          <ion-col class="col-header">Title</ion-col>
+          <ion-col class="col-header">Deadline</ion-col>
+        </ion-row>
+
         <ion-item button :router-link="'/tabs/project/' + project.id" :key="project.id" v-for="project in projects">
           <ion-grid>
             <ion-row>
-              <ion-col>
+              <ion-col class="col-content">
                 {{ project.title }}
               </ion-col>
-              <ion-col>
+              <ion-col class="col-content">
                 {{ project.deadline }}
               </ion-col>
             </ion-row>
