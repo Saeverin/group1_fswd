@@ -155,6 +155,11 @@
     getTasksByProject(+id)
   })
 
+  onUpdated(() => {
+    getSpecificProjectById(+id)
+    getTasksByProject(+id)
+  })
+
   </script>
     
     <style scoped>

@@ -12,7 +12,8 @@
         </ion-toolbar>
       </ion-header>
       <ion-list class="wrapper">
-        <ion-row>
+        <ion-grid>
+          <ion-row>
           <ion-col class="col-header">Title</ion-col>
           <ion-col class="col-header">Category</ion-col>
           <ion-col class="col-header">Enddate</ion-col>
@@ -20,7 +21,7 @@
         </ion-row>
         
           
-            <ion-row  button :router-link="'/tabs/task/' + task.id" :key="task.id" v-for="task in tasks">
+            <ion-row  button :router-link="'/tabs/task/' + task.id" :key="task.id" v-for="task in tasks" style="cursor: pointer;">
               <ion-col :v-bind="task.title" class="col-content">
                 {{ task.title }}
               </ion-col>
@@ -34,6 +35,8 @@
                 {{ task.project?.title }}
               </ion-col>
             </ion-row>
+        </ion-grid>
+        
           
     
       </ion-list>
@@ -97,7 +100,7 @@ import {
   IonInput,
 } from "@ionic/vue";
 import { useTasks } from "../composables/useTasks";
-import { defineComponent, onMounted, onBeforeUpdate, onUpdated, watchEffect, nextTick } from 'vue';
+import { defineComponent, onMounted, onBeforeUpdate, onUpdated,  nextTick } from 'vue';
 import { ref } from "vue";
 import createProjecttask from "../components/createProjecttask.vue";
 import createSingletask from "../components/createSingletask.vue";
@@ -105,11 +108,6 @@ import createSingletask from "../components/createSingletask.vue";
 const { newTask, tasks, getTasks } =  useTasks();
 
 const renderComponent = ref(true);
-
-watchEffect(() => {
-  useTasks;
-  tasks;
-});
 
 
 async function forceRerender() {
@@ -135,7 +133,6 @@ onUpdated(() => getTasks())
 
 function someEventListener() {
   
-  getTasks();
   componentKey.value += 1;
   setOpen(false); 
   
@@ -149,12 +146,15 @@ function setProjectTrue() {
   projectTask.value = true;
 }
 
+function delay(time: number) {
+  return new Promise(resolve => setTimeout(resolve, time));
+}
+
 function setOpen(open: boolean) {
   //Öffnen/Schliessen + update Tasklist
   isOpen.value = open;
-  getTasks();
   if(!open) {
-    window.location.reload();
+    delay(1000).then(() => getTasks());
   }
  }
 

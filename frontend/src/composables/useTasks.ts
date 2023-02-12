@@ -62,7 +62,14 @@ export function useTasks() {
         try {
             newSingleTask.value.done = true;
             newSingleTask.value.type = "SingleTask";
-            updateSingleTask(newSingleTask.value, id);
+            updateSingleTask(newSingleTask.value, id).then(async () => {
+                try {
+                    specificTask.value = await getTaskById(id);
+                } catch {
+                    console.log("error")
+                }
+                
+            });
             updateSingleTaskSuccess();
         } catch (error) {
             updateSingleTaskFail();
@@ -75,7 +82,14 @@ export function useTasks() {
         try {
             newProjectTask.value.done = true;
             newProjectTask.value.type = "ProjectTask";
-            updateProjectTask(newProjectTask.value, id);
+            updateProjectTask(newProjectTask.value, id).then(async () => {
+                try {
+                    specificTask.value = await getTaskById(id);
+                } catch {
+                    console.log("error")
+                }
+                
+            });
             updateProjectTaskSuccess();
         } catch (error) {
             updateProjectTaskFail();
@@ -86,7 +100,8 @@ export function useTasks() {
 
     const archiveSingleTask = async (id: number) => {
         try {
-            newSingleTask.value.done = true;
+            newSingleTask.value.archived = true;
+            newSingleTask.value.type = "SingleTask";
             updateSingleTask(newSingleTask.value, id);
             updateSingleTaskSuccess();
             getTasks();
@@ -100,6 +115,7 @@ export function useTasks() {
     const archiveProjectTask = async (id: number) => {
         try {
             newProjectTask.value.archived = true;
+            newProjectTask.value.type = "ProjectTask";
             await updateProjectTask(newProjectTask.value, id);
             updateProjectTaskSuccess();
             getTasks();
@@ -115,9 +131,15 @@ export function useTasks() {
     const addSingleTask = async () => {
         try {
             // add the new todo and update the list of all todos afterwards
-            await addNewSingleTask(newSingleTask.value);
+            await addNewSingleTask(newSingleTask.value).then(async () => {
+                try {
+                    tasks.value = await getAllTasks();
+                } catch {
+                    console.log("error")
+                }
+                
+            });
             addNewSingleTaskSuccess();
-            getTasks();
         } catch (error) {
             addNewSingleTaskFail();
             console.log(error);

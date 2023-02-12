@@ -58,9 +58,9 @@
             <ion-col>Action:</ion-col>
             <ion-col>
                 <ion-button color="danger" v-if="!specificTask?.done"
-                  @click="finishTask()">Finish</ion-button>
+                  @click="finishTask();">Finish</ion-button>
                 <ion-button color="success" v-if="!specificTask?.archived"
-                @click="archiveTask()">Archive</ion-button>
+                @click="archiveTask()" :router-link="'/tabs/task'">Archive</ion-button>
               </ion-col> 
           </ion-row>
         </ion-grid>
@@ -136,11 +136,11 @@ function toggleEdit() {
 
 function finishTask() {
   if(specificTask.value?.type == "SingleTask") {
-    finishSingleTask(+TaskId)
+    finishSingleTask(+TaskId);
   } else {
     (specificTask.value?.type == "ProjectTask") 
     finishProjectTask(+TaskId)
-}
+  }
 }
 
 function archiveTask() {

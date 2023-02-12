@@ -66,6 +66,9 @@ public class TaskController {
         if(task.getDone()) {
             orig.setDone(task.getDone());
         }
+        if(task.getArchived()) {
+            orig.setArchived(task.getArchived());
+        }
         if(task.getTitle() != null && task.getTitle() != "") {
             orig.setTitle(task.getTitle());
         }
