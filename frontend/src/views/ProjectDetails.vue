@@ -21,7 +21,7 @@
         <ion-icon button @click="changeProject(+id); toggleEdit()" :icon="checkmarkOutline" class="project_details_edit" :class="{editMode: !editMode}"></ion-icon>
         <ion-icon button @click="toggleEdit()" :icon="closeOutline" class="project_details_edit" :class="{editMode: !editMode}"></ion-icon>
         <br />
-        <ion-list>
+        <ion-list class="wrapper">
           <ion-grid>
             <ion-row>
               <ion-col> ID:</ion-col>
@@ -47,14 +47,14 @@
         </ion-list>
 
         <h1>Project Tasks</h1>
-        <ion-list>
+        <ion-list class="wrapper">
         <ion-row>
           <ion-col>Title</ion-col>
           <ion-col>Assignee</ion-col>
           <ion-col>Enddate</ion-col>
         </ion-row>
         <ion-item button :router-link="'/tabs/task/' + task.id" :key="task.id" v-for="task in tasks">
-          <ion-grid>
+          <ion-grid class="wrapper">
             <ion-row>
               <ion-col>
                 {{ task.title }}
@@ -70,8 +70,11 @@
         </ion-item>
       </ion-list>
 
+      <ion-grid>
+        <ion-row>
       <div>
         <ion-button @click="setOpen(true)">Create Project Task</ion-button>
+      
         <ion-modal :is-open="isOpen" @ionModalDidDismiss="
           () => {
             isOpen = false;
@@ -85,16 +88,13 @@
               </ion-buttons>
             </ion-toolbar>
           </ion-header>
-          <ion-content>
             <create-projecttask @some-event="setOpen(false); getTasksByProject(+id);"></create-projecttask>
-          </ion-content>
         </ion-modal>
       </div>
-
       <ion-button @click="archiveProject(+id)" :router-link="'/tabs/projects'" color="warning">Archive Project</ion-button>
-      <br>
       <ion-button @click="deleteProject(+id)" :router-link="'/tabs/projects'" color="danger">Delete Project</ion-button>
-
+    </ion-row>
+    </ion-grid>
       </ion-content>
     </ion-page>
   </template>

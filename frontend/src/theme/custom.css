@@ -13,8 +13,13 @@ ion-grid{
 }
 
 ion-header {
+    --font-weight: bold;
+    --background-color: gray;
+    --color: gray;
+}
+
+.col-header{
     font-weight: bold;
-    color: black;
 }
 
 ion-col{
@@ -23,12 +28,18 @@ ion-col{
     border: solid 1px gray;
     text-align: left;
     word-wrap: break-word;
+    overflow: hidden;
+}
+
+.col-content{
+    border: 0px transparent;
+    height:30px;
 }
 
 .wrapper{
     margin: 10px;
     width: 80%;
-    background: lightgray;
+    background: gray;
     border-spacing: 0;
     border-collapse: separate;
     border-radius: 10px;
@@ -37,22 +48,11 @@ ion-col{
     border-bottom: 1px solid black;
 }
 
-ion-button{
-    margin: 10px;
-}
-
 ion-title{
     font-weight: bold;
-    background-color: white;
+}
+
+.ueberschrift{
     color:black;
+    margin-left: 1%;
 }
-
-.h1{
-    margin: 10px;
-    color:black;
-}
-
-ion-toolbar{
-    color:gray;
-}
-
