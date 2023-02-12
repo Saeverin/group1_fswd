@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { API_ROOT } from "@/config/development";
 import { Project } from '@/model/project';
-import {getAllProjectsFail, getProjectByIdFail, deleteProjectByIdSuccess, deleteProjectByIdFail, changeProjectByIdSuccess, changeProjectByIdFail, addNewProjectSuccess, addNewProjectFail, updateProjectSuccess, updateProjectFail} from '@/composables/useToast';
+import {archiveProjectSuccess, getAllProjectsFail, getProjectByIdFail, deleteProjectByIdSuccess, deleteProjectByIdFail, changeProjectByIdSuccess, changeProjectByIdFail, addNewProjectSuccess, addNewProjectFail, updateProjectSuccess, updateProjectFail} from '@/composables/useToast';
 
 export async function getAllProJects(): Promise<Project[]>   { 
     const config = {        
@@ -93,7 +93,7 @@ export async function updateProJect(proJect: Project): Promise<any>   {
     }
     try {
         const response = await axios.put(API_ROOT + '/api/projects', proJect, config);
-        updateProjectSuccess();
+        archiveProjectSuccess();
         return response.data;
     } catch (error) {
         updateProjectFail();

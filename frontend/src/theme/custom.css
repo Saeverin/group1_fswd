@@ -41,4 +41,18 @@ ion-button{
     margin: 10px;
 }
 
+ion-title{
+    font-weight: bold;
+    background-color: white;
+    color:black;
+}
+
+.h1{
+    margin: 10px;
+    color:black;
+}
+
+ion-toolbar{
+    color:gray;
+}
 
